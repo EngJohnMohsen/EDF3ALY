@@ -1,0 +1,18 @@
+.button{
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 22;
+    -fx-text-fill: white;
+    -fx-background-color:  #04204d;
+}
+.button:hover{
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 22;
+    -fx-text-fill: #0c358d;
+    -fx-background-color: white;
+}
+.button:pressed{
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 22;
+    -fx-text-fill: white;
+    -fx-background-color: #0c358d;
+}
