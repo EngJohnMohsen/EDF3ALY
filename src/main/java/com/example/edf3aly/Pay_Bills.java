@@ -1,5 +1,7 @@
 package com.example.edf3aly;
 
+import java.util.Date;
+
 public class Pay_Bills extends Transactions {
 
     private int billID;
@@ -9,7 +11,7 @@ public class Pay_Bills extends Transactions {
 
     public Pay_Bills(int transactionID, double amount, int billID, String billName, boolean automatically)
     {
-        super(transactionID, "Pay Bills", amount);
+        super(transactionID, "Pay Bills", amount,new Date());
         this.billID = billID;
         this.billName = billName;
         this.automatically = automatically;
