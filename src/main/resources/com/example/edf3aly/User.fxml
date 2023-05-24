@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.edf3aly.UserController">
+    <children>
+        <VBox prefHeight="510.0" prefWidth="259.0" spacing="20.0" style="-fx-background-color: #04204d;">
+            <children>
+                <AnchorPane prefHeight="80.0" prefWidth="259.0">
+                    <children>
+                        <Label layoutX="78.0" layoutY="22.0" text="Edfa3ly" textFill="WHITE">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="32.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <Button fx:id="Home_btn" mnemonicParsing="false" onAction="#showHomePane" prefHeight="47.0" prefWidth="260.0" stylesheets="@Buttons2.css" text="Home" />
+                <Button fx:id="membr_btn" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="View member account" />
+                <Button fx:id="Class_btn" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="View classes" />
+                <Button fx:id="Logout" mnemonicParsing="false" onAction="#logout" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="Logout" />
+            </children>
+        </VBox>
+        <AnchorPane fx:id="Home_pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0">
+            <children>
+                <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Welcome!" textFill="WHITE">
+                    <font>
+                        <Font size="45.0" />
+                    </font>
+                </Label>
+                <Label layoutX="129.0" layoutY="217.0" text="What would you like to do today?">
+                    <font>
+                        <Font name="System Bold Italic" size="26.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
