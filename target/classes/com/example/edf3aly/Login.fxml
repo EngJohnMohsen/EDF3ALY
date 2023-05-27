@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #231F20;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.edf3aly.Main">
+    <children>
+        <ImageView fitHeight="400.0" fitWidth="500.0" layoutY="-2.0" pickOnBounds="true">
+            <image>
+                <Image url="@img.png" />
+            </image>
+            <effect>
+                <Lighting bumpInput="$null">
+                    <light>
+                        <Light.Distant>
+                            <color>
+                                <Color red="0.5394737124443054" green="0.5480263233184814" blue="0.7105262875556946" />
+                            </color>
+                        </Light.Distant>
+                    </light>
+                </Lighting>
+            </effect>
+        </ImageView>
+        <Pane fx:id="login_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;">
+            <children>
+                <TextField fx:id="userName" layoutX="39.0" layoutY="106.0" promptText="UserName" />
+                <Button layoutX="38.0" layoutY="221.0" mnemonicParsing="false" onAction="#login" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Login" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Italic" size="15.0" />
+                    </font></Button>
+                <Label layoutX="38.0" layoutY="83.0" text="UserName:" />
+                <Label layoutX="39.0" layoutY="147.0" text="Password:" />
+                <PasswordField fx:id="password" layoutX="38.0" layoutY="164.0" promptText="Password" />
+                <Button layoutX="43.0" layoutY="257.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Don't have an account?" textFill="#0e92c6">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Button>
+            <Label layoutX="59.0" layoutY="14.0" text="Welcome">
+               <font>
+                  <Font name="Times New Roman Bold" size="27.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+        <Pane fx:id="createAcc_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;" visible="false">
+            <children>
+                <TextField fx:id="RegUserName" disable="true" layoutX="39.0" layoutY="124.0" promptText="UserName" />
+                <Button fx:id="FinalRegAccPane_btn" layoutX="38.0" layoutY="229.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Create account" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Italic" size="15.0" />
+                    </font>
+                </Button>
+                <Label layoutX="38.0" layoutY="101.0" text="UserName:" />
+                <Label layoutX="39.0" layoutY="165.0" text="Password:" />
+                <PasswordField fx:id="RegPassword" disable="true" layoutX="38.0" layoutY="182.0" promptText="Password" />
+                <TextField fx:id="RegCheck" layoutX="14.0" layoutY="70.0" promptText="National ID" />
+                <Button fx:id="Check_btn" layoutX="178.0" layoutY="69.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="39.0" stylesheets="@Buttons.css" text="✓" />
+                <Label layoutX="37.0" layoutY="14.0" text="Create New Account">
+                    <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Button layoutX="82.0" layoutY="257.0" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@Register.css" text="Go back" />
+            </children>
+        </Pane>
+        <Pane fx:id="FinalRegAcc_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;" visible="false">
+            <children>
+                <TextField fx:id="RegFirstN" layoutX="38.0" layoutY="36.0" promptText="First Name" />
+                <TextField fx:id="RegLastN" layoutX="38.0" layoutY="72.0" promptText="Last Name" />
+                <TextField fx:id="RegNationalID" layoutX="38.0" layoutY="112.0" promptText="National ID" />
+                <TextField fx:id="RegPhoneN" layoutX="38.0" layoutY="147.0" promptText="Phone Number" />
+                <ComboBox fx:id="Gender_combo" layoutX="37.0" layoutY="186.0" prefWidth="150.0" promptText="Gender" />
+                <Button layoutX="38.0" layoutY="229.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Create account" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Italic" size="15.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

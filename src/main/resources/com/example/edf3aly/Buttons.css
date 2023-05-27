@@ -1,0 +1,26 @@
+.button{
+    -fx-font-style: Italic;
+    -fx-background-color:  #0c358d;
+    -fx-background-radius: 22;
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+    -fx-font-family: "Times New Roman";
+}
+.button:hover{
+    -fx-font-style: Italic;
+    -fx-background-color:  white;
+    -fx-background-radius: 22;
+    -fx-font-size: 15;
+    -fx-text-fill: #0c358d;
+    -fx-font-family: "Times New Roman";
+
+}
+.button:pressed{
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+    -fx-background-color: #04204d;
+    -fx-background-radius: 15;
+    -fx-font-style: italic;
+
+}
