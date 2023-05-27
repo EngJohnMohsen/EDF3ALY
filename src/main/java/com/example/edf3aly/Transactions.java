@@ -5,44 +5,55 @@ import java.util.Date;
 public class Transactions {
     private int transactionID;
     private String transactionType;
-    private double amount;
+    public double amount;
     private Date date;
 
-    public Transactions(int transactionID, String transactionType, double amount,Date date) {
+    public Transactions(int transactionID, String transactionType, double amount, Date date) {
         this.transactionID = transactionID;
         this.transactionType = transactionType;
         this.amount = amount;
-        this.date = new Date();
+        this.date = date;
     }
 
     public int getTransactionID() {
         return transactionID;
     }
 
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-    public Date getDate() {
-        return date;
-    }
-
     public void setTransactionID(int transactionID) {
         this.transactionID = transactionID;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
     }
 
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public boolean processTransaction() {
+        if (amount > 0) {
+            // Process the transaction logic here
+            // For this example, we'll assume any positive amount is a successful transaction
+            return true;
+        } else {
+            return false;
+        }
     }
 }

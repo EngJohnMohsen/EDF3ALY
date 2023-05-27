@@ -3,7 +3,7 @@ package com.example.edf3aly;
 public class Account {
     private String accType;
     private String accNo;
-    private double accBalance;
+    private static double accBalance;
 
     public Account(String accType, String accNo, double accBalance)
     {
@@ -22,7 +22,7 @@ public class Account {
         return accNo;
     }
 
-    public double getAccBalance()
+    public static double getAccBalance()
     {
         return accBalance;
     }
@@ -40,6 +40,10 @@ public class Account {
     public void setAccBalance(double accBalance)
     {
         this.accBalance = accBalance;
+    }
+    public double getAccBalance(double accBalance)
+    {
+        return accBalance;
     }
     public void newBalance(double accBalance, double amount, String transactionType) {
         if (transactionType.equals("Deposit"))

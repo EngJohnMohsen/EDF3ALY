@@ -8,6 +8,9 @@ public class User {
     private String password;
     private Account account;
 
+
+    private static double Balance;
+
     public User(String name, String ssn, String phoneNo, String username, String password)
     {
         this.name = name;
@@ -61,4 +64,13 @@ public class User {
     {
         this.password = password;
     }
+
+    public static double getBalance() {
+        return Balance;
+    }
+
+    public static void setBalance(double balance) {
+        Balance = balance;
+    }
+
 }
