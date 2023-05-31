@@ -2,8 +2,14 @@ package com.example.edf3aly;
 
 public class Account {
     private String accType;
+
+   public enum AccountType { //will change account type to enum
+        Savings,
+        Checking,
+        Credit
+    }
     private String accNo;
-    private static double accBalance;
+    private  double accBalance;
 
     public Account(String accType, String accNo, double accBalance)
     {
@@ -22,7 +28,7 @@ public class Account {
         return accNo;
     }
 
-    public static double getAccBalance()
+    public  double getAccBalance()
     {
         return accBalance;
     }

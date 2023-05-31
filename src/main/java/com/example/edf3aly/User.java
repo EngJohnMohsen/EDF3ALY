@@ -6,18 +6,19 @@ public class User {
     private String phoneNo;
     private String username;
     private String password;
-    private Account account;
+    private static Account account;
 
 
-    private static double Balance;
+    private static double Balance; // dah 8lt
 
-    public User(String name, String ssn, String phoneNo, String username, String password)
+    public User(String name, String ssn, String phoneNo, String username, String password,Account account)
     {
         this.name = name;
         this.ssn = ssn;
         this.phoneNo = phoneNo;
         this.username = username;
         this.password = password;
+        this.account = account;
     }
 
     public String getName()
@@ -66,11 +67,16 @@ public class User {
     }
 
     public static double getBalance() {
-        return Balance;
-    }
+        return account.getAccBalance();
+    } //edited to account balance instead
 
     public static void setBalance(double balance) {
         Balance = balance;
+    }
+
+    public void setAccbalance(double accbalance) //edited to account balance instead
+    {
+        account.setAccBalance(accbalance);
     }
 
 }

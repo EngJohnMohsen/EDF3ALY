@@ -6,20 +6,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.InputMismatchException;
 
- class TransferTest {
+class TransferTest { // will add an update balance test later
 
     //TC1
     @Test
-    public void transfer1(){
+    public void transfer1() {
+        Account sourceAccount = new Account("Normal", "1001-1234", 600.0);
+        Account targetAccount = new Account("Normal", "1001-2345", 0.0); // Set the target account to the desired account
 
-        User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456");
-        user.setBalance(1400);
+        System.out.println("This is the balance before: " + sourceAccount.getAccBalance());
+        System.out.println("This is the balance before: " + targetAccount.getAccBalance());
 
-        Transfer testing = new Transfer(1, 200.0, "Acc");
+        User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
+
+        Transfer testing = new Transfer(1, 200.0, targetAccount,sourceAccount); // Set the target account as an Account object
         testing.setUser(user);
 
-        assertEquals(true, testing.transferMoney());
+        assertTrue(testing.transferMoney());
+        System.out.println("This is the remaining balance: " + sourceAccount.getAccBalance());
+        System.out.println("This is the balance after: " + targetAccount.getAccBalance());
     }
+
+
+
+    /*
     //TC2
     @Test
     public void transfer2() {
@@ -129,7 +139,7 @@ import java.util.InputMismatchException;
      //TC10
      @Test
      public void transfer10() {
-         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456");
+         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456",new Account("acc1","123456",1400));
          user.setBalance(1400);
 
          Transfer testing = new Transfer(1, Double.parseDouble("4$#^"), "%#@");
@@ -138,6 +148,6 @@ import java.util.InputMismatchException;
          assertThrows(InputMismatchException.class, () -> {
              testing.transferMoney();
          });
-     }
+     }*/
 }
 

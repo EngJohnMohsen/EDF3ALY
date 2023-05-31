@@ -1,55 +1,76 @@
 package com.example.edf3aly;
+
 import java.util.Date;
 import java.util.InputMismatchException;
 
 public class Transfer extends Transactions {
 
-    private String targetAccount;
-    private String sourceAccount;
+    private Account targetAccount;
+    private Account sourceAccount;
 
     private User user;
 
-
-    public Transfer(int transactionID, double amount, String targetAccount) {
+    public Transfer(int transactionID, double amount, Account targetAccount, Account sourceAccount) {
         super(transactionID, "Transfer", amount, new Date());
         this.targetAccount = targetAccount;
+        this.sourceAccount = sourceAccount;
     }
 
-    public String getTargetAccount() {
+    public Account getTargetAccount() {
         return targetAccount;
     }
 
-    public void setTargetAccount(String targetAccount) {
+    public void setTargetAccount(Account targetAccount) {
         this.targetAccount = targetAccount;
     }
 
-    public String getSourceAccount() {
+    public Account getSourceAccount() {
         return sourceAccount;
     }
 
-    public void setSourceAccount(String sourceAccount) {
+    public void setSourceAccount(Account sourceAccount) {
         this.sourceAccount = sourceAccount;
     }
+
     public boolean transferMoney() {
         // Check if the transfer amount is valid
         if (amount <= 0) {
             throw new InputMismatchException("Invalid transfer amount");
         }
 
-        // Check if the target account is empty or contains numbers
-        if (targetAccount.isEmpty() || targetAccount.matches(".*[0-9].*")) {
+        // Check if the target account is null
+        if (targetAccount == null) {
+            throw new InputMismatchException("Target account not set");
+        }
+
+        // Check if the target account does not match the required pattern
+        if (!targetAccount.getAccNo().matches("100\\d{1}-\\d{4}")) {
             throw new InputMismatchException("Invalid target account");
         }
 
+        // Check if the source account is null
+        if (sourceAccount == null) {
+            throw new InputMismatchException("Source account not set");
+        }
+        // Check if the source account does not match the required pattern
+        if (!sourceAccount.getAccNo().matches("100\\d{1}-\\d{4}")) {
+            throw new InputMismatchException("Invalid source account");
+        }
+
         // Check if the user's balance is sufficient for the transfer
-        if (amount > user.getBalance()) {
+        if (amount > sourceAccount.getAccBalance()) {
             throw new InputMismatchException("Insufficient balance for transfer");
         }
 
-        // Subtract the amount from the user's balance
-        user.setBalance(user.getBalance() - amount);
+        // Subtract the amount from the source account's balance
+        double newSourceBalance = sourceAccount.getAccBalance() - amount;
+        sourceAccount.setAccBalance(newSourceBalance);
 
-        // Placeholder logic to add the amount to the transfer account
+        // Add the amount to the target account's balance
+        double newTargetBalance = targetAccount.getAccBalance() + amount;
+        targetAccount.setAccBalance(newTargetBalance);
+
+        // Placeholder logic to complete the transfer
         // Add your transfer logic here
 
         return true;

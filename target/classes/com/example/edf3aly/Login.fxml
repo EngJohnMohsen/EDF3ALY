@@ -54,10 +54,10 @@
             </Label>
             </children>
         </Pane>
-        <Pane fx:id="createAcc_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;" visible="false">
+        <Pane fx:id="createAcc_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;">
             <children>
                 <TextField fx:id="RegUserName" disable="true" layoutX="39.0" layoutY="124.0" promptText="UserName" />
-                <Button fx:id="FinalRegAccPane_btn" layoutX="38.0" layoutY="229.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Create account" textFill="WHITE">
+                <Button fx:id="FinalRegAccPane_btn" layoutX="38.0" layoutY="229.0" mnemonicParsing="false" onAction="#showFinalRegPane" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Create account" textFill="WHITE">
                     <font>
                         <Font name="Times New Roman Italic" size="15.0" />
                     </font>

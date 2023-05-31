@@ -70,9 +70,9 @@ public class Main extends Application {
     public String passWord;
     public Account account;
 
-    static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass");
-    static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass");
-    static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1");
+    static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass",new Account("nrom","123",1000));
+    static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass",new Account("nrom","123",1000));
+    static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1",new Account("nrom","123",1000));
 
     static List<User> sysUsers = new ArrayList<>();
 
