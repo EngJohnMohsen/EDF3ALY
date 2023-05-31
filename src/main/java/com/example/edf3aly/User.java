@@ -8,9 +8,6 @@ public class User {
     private String password;
     private static Account account;
 
-
-    private static double Balance; // dah 8lt
-
     public User(String name, String ssn, String phoneNo, String username, String password,Account account)
     {
         this.name = name;
@@ -66,17 +63,5 @@ public class User {
         this.password = password;
     }
 
-    public static double getBalance() {
-        return account.getAccBalance();
-    } //edited to account balance instead
-
-    public static void setBalance(double balance) {
-        Balance = balance;
-    }
-
-    public void setAccbalance(double accbalance) //edited to account balance instead
-    {
-        account.setAccBalance(accbalance);
-    }
 
 }
