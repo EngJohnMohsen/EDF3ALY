@@ -49,8 +49,6 @@ public class Transactions {
 
     public boolean processTransaction() {
         if (amount > 0) {
-            // Process the transaction logic here
-            // For this example, we'll assume any positive amount is a successful transaction
             return true;
         } else {
             return false;

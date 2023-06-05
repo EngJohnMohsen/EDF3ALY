@@ -7,7 +7,6 @@ public class Transfer extends Transactions {
 
     private Account targetAccount;
     private Account sourceAccount;
-
     private User user;
 
     public Transfer(int transactionID, double amount, Account targetAccount, Account sourceAccount) {
@@ -35,31 +34,37 @@ public class Transfer extends Transactions {
     public boolean transferMoney() {
         // Check if the transfer amount is valid
         if (amount <= 0) {
-            throw new InputMismatchException("Invalid transfer amount");
+            throw new IllegalArgumentException("Invalid transfer amount");
         }
 
         // Check if the target account is null
         if (targetAccount == null) {
-            throw new InputMismatchException("Target account not set");
+            throw new IllegalArgumentException("Target account not set");
         }
 
         // Check if the target account does not match the required pattern
-        if (!targetAccount.getAccNo().matches("100\\d{1}-\\d{4}")) {
-            throw new InputMismatchException("Invalid target account");
+        if (!targetAccount.isValidAccountNumber(targetAccount.getAccNo())) {
+            throw new IllegalArgumentException("Invalid target account");
+        }
+
+        // Check if the source account does not match the required pattern
+        if (!sourceAccount.isValidAccountNumber(sourceAccount.getAccNo())) {
+            throw new IllegalArgumentException("Invalid source account");
         }
 
         // Check if the source account is null
         if (sourceAccount == null) {
-            throw new InputMismatchException("Source account not set");
-        }
-        // Check if the source account does not match the required pattern
-        if (!sourceAccount.getAccNo().matches("100\\d{1}-\\d{4}")) {
-            throw new InputMismatchException("Invalid source account");
+            throw new IllegalArgumentException("Source account not set");
         }
 
         // Check if the user's balance is sufficient for the transfer
         if (amount > sourceAccount.getAccBalance()) {
-            throw new InputMismatchException("Insufficient balance for transfer");
+            throw new IllegalArgumentException("Insufficient balance for transfer");
+        }
+
+        // Check if the source account and target account are the same
+        if (sourceAccount.equals(targetAccount)) {
+            throw new IllegalArgumentException("Source and target accounts cannot be the same");
         }
 
         // Subtract the amount from the source account's balance
@@ -70,12 +75,8 @@ public class Transfer extends Transactions {
         double newTargetBalance = targetAccount.getAccBalance() + amount;
         targetAccount.setAccBalance(newTargetBalance);
 
-        // Placeholder logic to complete the transfer
-        // Add your transfer logic here
-
         return true;
     }
-
 
 
     public User getUser() {

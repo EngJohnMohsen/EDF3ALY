@@ -79,7 +79,7 @@ public class LoginController {
         } else {
 //            String userNameText = userName.getText();
 //            String passwordText = password.getText();
-            User user = new User("Ahmed Mohsen", "5678", "7755", "user1", "password",new Account("normal","1234",1000));
+            User user = new User("Ahmed Mohsen", "5678", "7755", "user1", "password",new Account(Account.AccountType.Savings,"1234",1000));
             try {
                 if (user == null || !password.getText().equals(user.getPassword())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
