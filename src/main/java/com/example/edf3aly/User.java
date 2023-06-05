@@ -1,5 +1,7 @@
 package com.example.edf3aly;
 
+import java.util.List;
+
 public class User {
     private String name;
     private String ssn;
@@ -63,5 +65,17 @@ public class User {
         this.password = password;
     }
 
+
+    public boolean register(List<User> usersList) {
+        for (User value : usersList) {
+            if (value.getSSN().equals(this.getSSN())) {
+                System.out.println("\nUser: " + this.getName() + " Already Exists\n");
+                return false;
+            }
+        }
+        usersList.add(this);
+        System.out.println("\nUser: " + this.getName() + " Successfully Added\n");
+        return true;
+    }
 
 }

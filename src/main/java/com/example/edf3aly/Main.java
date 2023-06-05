@@ -13,8 +13,10 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
 
@@ -28,7 +30,7 @@ public class Main extends Application {
     public Pane FinalRegAcc_pane;
 
     @FXML
-    public ComboBox<?> Gender_combo;
+    private ComboBox<String> Account_Type;
 
     @FXML
     public TextField RegCheck;
@@ -63,6 +65,15 @@ public class Main extends Application {
     @FXML
     public TextField userName;
 
+    @FXML
+    private Button goBack_btn;
+
+    @FXML
+    private Button RegCreateAcc_btn;
+
+    @FXML
+    private TextField RegName;
+
     public String name;
     public String ssn;
     public String phoneNo;
@@ -70,11 +81,18 @@ public class Main extends Application {
     public String passWord;
     public Account account;
 
-    static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass",new Account(Account.AccountType.Savings,"123",1000));
-    static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass",new Account(Account.AccountType.Savings,"123",1000));
-    static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1",new Account(Account.AccountType.Savings,"123",1000));
+    //Premium account begins with 77 and Regular account begins with 88 and VIP account begins with 99
+    static Account myUserAcc = new Account("Premium", "77555400", 15000.00);
+    static Account myUserAcc2 = new Account("Regular", "88565401", 2000.00);
+    static Account myUserAcc3 = new Account("VIP", "99165481", 600000.00);
+
+    static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass", myUserAcc);
+    static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass", myUserAcc2);
+    static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1", myUserAcc3);
 
     static List<User> sysUsers = new ArrayList<>();
+
+    String[] AccountType = new String[]{"Regular", "Premium", "VIP"};
 
     public static void main(String[] args) {
         sysUsers.add(myUser);
@@ -112,6 +130,7 @@ public class Main extends Application {
         }
         return null;
     }
+
 
     @FXML
     public void showFinalRegPane() {
@@ -188,7 +207,7 @@ public class Main extends Application {
             try {
                 String ID = RegCheck.getText();
                 ssn = ID;
-                if (findUser(ID, sysUsers) != null) {
+                if (findUserID(ID, sysUsers) != null) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERROR");
                     alert.setHeaderText("Account already exists");
@@ -204,5 +223,56 @@ public class Main extends Application {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    public void registerAcc2() {
+        if (!this.RegName.getText().equals("") && !this.RegPassword.getText().equals("") &&
+                !this.RegNationalID.getText().equals("") && !this.RegPhoneN.getText().equals("")) {
+            try {
+                String userName = this.RegUserName.getText();
+                String password = this.RegPassword.getText();
+                String name = this.RegName.getText();
+                String nationalID = this.RegNationalID.getText();
+                String phoneNumber = this.RegPhoneN.getText();
+                User user = new User(name, nationalID, phoneNumber, userName, password,myUserAcc);
+                if (user.register(sysUsers)) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText("Account successfully created");
+                    String var10001 = this.RegFirstN.getText();
+                    alert.setContentText(var10001 + " " + this.RegLastN.getText() + " successfully added");
+                    alert.show();
+                    this.RegCheck.clear();
+                    this.RegUserName.clear();
+                    this.RegPassword.clear();
+                    this.RegName.clear();
+                    this.RegNationalID.clear();
+                    this.RegPhoneN.clear();
+                    this.RegUserName.setDisable(true);
+                    this.RegPassword.setDisable(true);
+                    this.FinalRegAcc_pane.setVisible(false);
+                    this.login_pane.setVisible(true);
+                }
+            } catch (Exception var10) {
+                var10.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Empty Fields");
+            alert.setHeaderText("Fields are empty");
+            alert.setContentText("Please fill in the fields.");
+            alert.show();
+        }
+
+    }
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.Account_Type.getItems().addAll(this.AccountType);
+        this.Account_Type.setOnAction(this::getGender);
+    }
+
+    public void getGender(ActionEvent event) {
+        String Account = (String)this.Account_Type.getValue();
     }
 }
