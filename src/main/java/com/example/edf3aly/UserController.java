@@ -210,4 +210,64 @@ public class UserController {
         showTransactioPane();
     }
 
+    public void Transfer(ActionEvent event) {
+        if(TransferAmount.getText().isEmpty() || TransferToAccount.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Transfer Error");
+            alert.setContentText("Please fill all the fields");
+            alert.showAndWait();
+        }
+        else{
+            try {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Transfer Confirmation");
+                alert.setContentText("Are you sure you want to transfer " + TransferAmount.getText() + " to " + TransferToAccount.getText() + "?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    //Transfer
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Information");
+                    alert1.setHeaderText("Transfer Successful");
+                    alert1.setContentText("You have successfully transferred " + TransferAmount.getText() + " to " + TransferToAccount.getText());
+                    alert1.showAndWait();
+                    showTransactioPane();
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                exception.getCause();
+            }
+        }
+    }
+
+    public void Pay_Bill(ActionEvent){
+        if(BillAmount.getText().isEmpty() || BillName.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Pay Bill Error");
+            alert.setContentText("Please fill all the fields");
+            alert.showAndWait();
+        }
+        else{
+            try {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Pay Bill Confirmation");
+                alert.setContentText("Are you sure you want to pay " + BillAmount.getText() + " to " + BillName.getText() + "?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    //Pay Bill
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Information");
+                    alert1.setHeaderText("Pay Bill Successful");
+                    alert1.setContentText("You have successfully paid " + BillAmount.getText() + " to " + BillName.getText());
+                    alert1.showAndWait();
+                    showTransactioPane();
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                exception.getCause();
+            }
+        }
+    }
+
 }

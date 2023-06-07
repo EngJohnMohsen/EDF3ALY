@@ -2,42 +2,146 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.edf3aly.UserController">
+<AnchorPane prefHeight="510.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.edf3aly.UserController">
     <children>
-        <VBox prefHeight="510.0" prefWidth="259.0" spacing="20.0" style="-fx-background-color: #04204d;">
+        <VBox prefHeight="510.0" prefWidth="213.0" spacing="20.0" style="-fx-background-color: #04204d;">
             <children>
-                <AnchorPane prefHeight="80.0" prefWidth="259.0">
+                <AnchorPane prefHeight="126.0" prefWidth="259.0">
                     <children>
-                        <Label layoutX="78.0" layoutY="22.0" text="Edfa3ly" textFill="WHITE">
+                        <Label layoutX="55.0" layoutY="26.0" text="Edfa3ly" textFill="WHITE">
                             <font>
                                 <Font name="Times New Roman Bold Italic" size="32.0" />
                             </font>
                         </Label>
                     </children>
                 </AnchorPane>
-                <Button fx:id="Home_btn" mnemonicParsing="false" onAction="#showHomePane" prefHeight="47.0" prefWidth="260.0" stylesheets="@Buttons2.css" text="Home" />
-                <Button fx:id="membr_btn" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="View member account" />
-                <Button fx:id="Class_btn" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="View classes" />
+                <Button fx:id="Home_btn" mnemonicParsing="false" onAction="#returnToHome" prefHeight="47.0" prefWidth="260.0" stylesheets="@Buttons2.css" text="Home" />
+                <Button fx:id="membr_btn" mnemonicParsing="false" onAction="#showTransactioPane" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="Transactions" />
                 <Button fx:id="Logout" mnemonicParsing="false" onAction="#logout" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="Logout" />
+            <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </VBox>
-        <AnchorPane fx:id="Home_pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0">
-            <children>
-                <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Welcome!" textFill="WHITE">
-                    <font>
-                        <Font size="45.0" />
-                    </font>
-                </Label>
-                <Label layoutX="129.0" layoutY="217.0" text="What would you like to do today?">
-                    <font>
-                        <Font name="System Bold Italic" size="26.0" />
-                    </font>
-                </Label>
-            </children>
+        <AnchorPane fx:id="Transaction_pane" layoutX="212.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+         <children>
+            <Button fx:id="ToTransferPane_Btn" alignment="BOTTOM_LEFT" layoutX="43.0" layoutY="216.0" mnemonicParsing="false" onAction="#showTransferPane" prefHeight="39.0" prefWidth="147.0" stylesheets="@Buttons2.css" text="Transfer" />
+            <Button fx:id="ToHistoryPane_Btn" alignment="BASELINE_LEFT" layoutX="43.0" layoutY="291.0" mnemonicParsing="false" onAction="#showHistoryPane" prefHeight="39.0" prefWidth="147.0" stylesheets="@Buttons2.css" text="History" />
+            <Button fx:id="ToBuyPane_Btn" alignment="BASELINE_LEFT" layoutX="43.0" layoutY="434.0" mnemonicParsing="false" onAction="#showBuyPane" prefHeight="39.0" prefWidth="147.0" stylesheets="@Buttons2.css" text="Buy" />
+            <Button fx:id="ToPayBillPane_Btn" alignment="BASELINE_LEFT" layoutX="43.0" layoutY="365.0" mnemonicParsing="false" onAction="#showPayBillPane" prefHeight="39.0" prefWidth="147.0" stylesheets="@Buttons2.css" text="Pay Bill" />
+            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="146.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img_1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="43.0" layoutY="83.0" text="Transactions">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="28.0" />
+               </font>
+            </Label>
+         </children>
         </AnchorPane>
+      <AnchorPane fx:id="Transfer_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+         <children>
+            <TextField fx:id="TransferAmount" layoutX="58.0" layoutY="243.0" />
+            <TextField fx:id="TransferToAccount" layoutX="338.0" layoutY="243.0" />
+            <Button fx:id="TransferToTransaction_btn" layoutX="58.0" layoutY="457.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
+            <Button fx:id="Transfer_Btn" layoutX="216.0" layoutY="314.0" mnemonicParsing="false" stylesheets="@Buttons2.css" text="Transfer" />
+            <Label layoutX="43.0" layoutY="83.0" text="Transfer">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="209.0" text="Amount" />
+            <Label layoutX="338.0" layoutY="209.0" text="Recipient Account" />
+            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="250.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img_1.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane fx:id="History_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+         <children>
+            <Label layoutX="43.0" layoutY="83.0" text="Transaction History">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="28.0" />
+               </font>
+            </Label>
+            <TableView fx:id="HistoryTree" layoutX="26.0" layoutY="132.0" prefHeight="304.0" prefWidth="498.0">
+              <columns>
+                <TableColumn prefWidth="133.0" text="Transaction ID" />
+                <TableColumn prefWidth="95.0" text="Type" />
+                  <TableColumn prefWidth="140.0" text="Amount" />
+                  <TableColumn prefWidth="129.0" text="Date" />
+              </columns>
+            </TableView>
+            <Button fx:id="HistoryToTransaction_Btn" layoutX="49.0" layoutY="453.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="PayBill_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+         <children>
+            <TextField fx:id="BillAmount" layoutX="42.0" layoutY="243.0" />
+            <TextField fx:id="BillName" layoutX="327.0" layoutY="243.0" />
+            <Label layoutX="42.0" layoutY="215.0" text="Amount" />
+            <Label layoutX="327.0" layoutY="215.0" text="Bill Name" />
+            <Label layoutX="43.0" layoutY="83.0" text="Pay Bill">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="249.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img_2.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="PayBill_Btn" layoutX="236.0" layoutY="309.0" mnemonicParsing="false" stylesheets="@Buttons2.css" text="Pay" />
+            <Button fx:id="PayBillToTransaction_Btn" layoutX="51.0" layoutY="454.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="Buy_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+         <children>
+            <Label layoutX="38.0" layoutY="68.0" text="Buy Item">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="28.0" />
+               </font>
+            </Label>
+            <Button fx:id="BuyToTransaction_btn" layoutX="39.0" layoutY="457.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
+         <children>
+            <Label layoutX="175.0" layoutY="114.0" text="Your Balance">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="33.0" />
+               </font>
+            </Label>
+            <Label layoutX="246.0" layoutY="197.0" text="0.00">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="486.0" layoutY="14.0" onMouseClicked="#showUserDetailsPane" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img_3.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="40.0" layoutY="297.0" text="Quick Links">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="244.0" layoutY="84.0" text="XXXXXXX" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="UserDetails_Pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+         <children>
+            <Button fx:id="UserToHome_Btn" layoutX="42.0" layoutY="457.0" mnemonicParsing="false" onAction="#returnToHome" stylesheets="@Buttons2.css" text="Go Back" />
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>
