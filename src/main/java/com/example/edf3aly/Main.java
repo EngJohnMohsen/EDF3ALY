@@ -82,13 +82,13 @@ public class Main extends Application {
     public Account account;
 
     //Premium account begins with 77 and Regular account begins with 88 and VIP account begins with 99
-    static Account myUserAcc = new Account(Account.AccountType.Credit, "77555400", 15000.00);
-    static Account myUserAcc2 = new Account(Account.AccountType.Savings, "88565401", 2000.00);
-    static Account myUserAcc3 = new Account(Account.AccountType.Checking, "99165481", 600000.00);
+    public static Account myUserAcc = new Account(Account.AccountType.Credit, "77555400", 15000.00);
+    public static Account myUserAcc2 = new Account(Account.AccountType.Savings, "88565401", 2000.00);
+    public static Account myUserAcc3 = new Account(Account.AccountType.Checking, "99165481", 600000.00);
 
-    static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass", myUserAcc);
-    static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass", myUserAcc2);
-    static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1", myUserAcc3);
+    public static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass", myUserAcc);
+    public static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass", myUserAcc2);
+    public static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1", myUserAcc3);
 
     static List<User> sysUsers = new ArrayList<>();
 
