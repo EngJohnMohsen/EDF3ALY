@@ -56,30 +56,30 @@
         </Pane>
         <Pane fx:id="createAcc_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;" visible="false">
             <children>
-                <TextField fx:id="RegUserName" disable="true" layoutX="39.0" layoutY="124.0" promptText="UserName" />
-                <Button fx:id="FinalRegAccPane_btn" layoutX="38.0" layoutY="229.0" mnemonicParsing="false" onAction="#showFinalRegPane" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Create account" textFill="WHITE">
+                <TextField fx:id="RegUserName" layoutX="38.0" layoutY="79.0" promptText="UserName" />
+                <Button fx:id="FinalRegAccPane_btn" layoutX="38.0" layoutY="229.0" mnemonicParsing="false" onAction="#registerAcc" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Create account" textFill="WHITE">
                     <font>
                         <Font name="Times New Roman Italic" size="15.0" />
                     </font>
                 </Button>
-                <Label layoutX="38.0" layoutY="101.0" text="UserName:" />
-                <Label layoutX="39.0" layoutY="165.0" text="Password:" />
-                <PasswordField fx:id="RegPassword" disable="true" layoutX="38.0" layoutY="182.0" promptText="Password" />
-                <TextField fx:id="RegCheck" layoutX="14.0" layoutY="70.0" promptText="SSN" />
-                <Button fx:id="Check_btn" layoutX="178.0" layoutY="69.0" mnemonicParsing="false" onAction="#registerAcc" prefHeight="28.0" prefWidth="39.0" stylesheets="@Buttons.css" text="✓" />
+                <Label layoutX="37.0" layoutY="55.0" text="UserName:" />
+                <Label layoutX="40.0" layoutY="117.0" text="Password:" />
+                <PasswordField fx:id="RegPassword" layoutX="37.0" layoutY="134.0" promptText="Password" />
                 <Label layoutX="37.0" layoutY="14.0" text="Create New Account">
                     <font>
                         <Font name="Times New Roman Bold" size="17.0" />
                     </font>
                 </Label>
                 <Button fx:id="goBack_btn" layoutX="82.0" layoutY="257.0" mnemonicParsing="false" onAction="#backToMain" style="-fx-background-color: transparent;" stylesheets="@Register.css" text="Go back" />
+                <TextField fx:id="RegCheck" layoutX="37.0" layoutY="187.0" promptText="SSN" />
+            <Label layoutX="38.0" layoutY="170.0" text="National ID:" />
             </children>
         </Pane>
         <Pane fx:id="FinalRegAcc_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;" visible="false">
             <children>
                 <TextField fx:id="RegName" layoutX="38.0" layoutY="55.0" promptText="Name" />
-                <TextField fx:id="RegNationalID" layoutX="38.0" layoutY="88.0" promptText="SSN" />
-                <TextField fx:id="RegPhoneN" layoutX="38.0" layoutY="122.0" promptText="Phone Number" />
+                <TextField fx:id="AccBalance" layoutX="38.0" layoutY="128.0" promptText="Balance" />
+                <TextField fx:id="RegPhoneN" layoutX="38.0" layoutY="93.0" promptText="Phone Number" />
                 <Button fx:id="RegCreateAcc_btn" layoutX="38.0" layoutY="225.0" mnemonicParsing="false" onAction="#registerAcc2" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Create account" textFill="WHITE">
                     <font>
                         <Font name="Times New Roman Italic" size="15.0" />
@@ -90,7 +90,7 @@
                         <Font name="Times New Roman Bold" size="16.0" />
                     </font>
                 </Label>
-            <ComboBox fx:id="Account_Type" layoutX="37.0" layoutY="159.0" prefWidth="150.0" promptText="Account Type" />
+            <ComboBox fx:id="Account_Type" layoutX="37.0" layoutY="168.0" prefWidth="150.0" promptText="Account Type" />
             </children>
         </Pane>
     </children>

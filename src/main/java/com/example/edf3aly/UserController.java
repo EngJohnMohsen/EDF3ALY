@@ -19,6 +19,9 @@ public class UserController {
     private TextField BillName;
 
     @FXML
+    private Button BuyItem_Btn;
+
+    @FXML
     private Button BuyToTransaction_btn;
 
     @FXML
@@ -28,7 +31,7 @@ public class UserController {
     private Button HistoryToTransaction_Btn;
 
     @FXML
-    private TableView<Statement_Generator> HistoryTree;
+    private TableView<String> HistoryTree;
 
     @FXML
     private AnchorPane History_pane;
@@ -38,6 +41,9 @@ public class UserController {
 
     @FXML
     private AnchorPane Home_pane;
+
+    @FXML
+    private TextField ItemAmount_txt;
 
     @FXML
     private Button Logout;
@@ -50,6 +56,9 @@ public class UserController {
 
     @FXML
     private AnchorPane PayBill_pane;
+
+    @FXML
+    private TextField StoreID_txt;
 
     @FXML
     private Button ToBuyPane_Btn;
@@ -240,7 +249,7 @@ public class UserController {
         }
     }
 
-    public void Pay_Bill(ActionEvent){
+    public void Pay_Bill(ActionEvent event){
         if(BillAmount.getText().isEmpty() || BillName.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -260,6 +269,36 @@ public class UserController {
                     alert1.setTitle("Information");
                     alert1.setHeaderText("Pay Bill Successful");
                     alert1.setContentText("You have successfully paid " + BillAmount.getText() + " to " + BillName.getText());
+                    alert1.showAndWait();
+                    showTransactioPane();
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                exception.getCause();
+            }
+        }
+    }
+
+    public void BuyItem(ActionEvent event) {
+        if(ItemAmount_txt.getText().isEmpty() || StoreID_txt.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Buy Error");
+            alert.setContentText("Please fill all the fields");
+            alert.showAndWait();
+        }
+        else{
+            try {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Buy Confirmation");
+                alert.setContentText("Are you sure you want to buy " + ItemAmount_txt.getText() + " " + StoreID_txt.getText() + "?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    //Buy
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Information");
+                    alert1.setHeaderText("Buy Successful");
+                    alert1.setContentText("You have successfully bought " + ItemAmount_txt.getText() + " " + StoreID_txt.getText());
                     alert1.showAndWait();
                     showTransactioPane();
                 }
