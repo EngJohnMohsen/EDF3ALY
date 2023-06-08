@@ -1,25 +1,26 @@
 package com.example.edf3aly;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Transactions {
-    private int transactionID;
+    private UUID transactionID;
     private String transactionType;
     public double amount;
     private Date date;
 
-    public Transactions(int transactionID, String transactionType, double amount, Date date) {
+    public Transactions(UUID transactionID, String transactionType, double amount, Date date) {
         this.transactionID = transactionID;
         this.transactionType = transactionType;
         this.amount = amount;
         this.date = date;
     }
 
-    public int getTransactionID() {
+    public UUID getTransactionID() {
         return transactionID;
     }
 
-    public void setTransactionID(int transactionID) {
+    public void setTransactionID(UUID transactionID) {
         this.transactionID = transactionID;
     }
 

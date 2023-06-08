@@ -24,9 +24,12 @@ public class Statement_Generator {
             System.out.println("----------------------------------------------------");
             for (Transactions transaction : transactionHistory)
             {
-                System.out.printf("%-15d %-15s $%-15.2f %-15s\n", transaction.getTransactionID(),
-                        transaction.getTransactionType(), transaction.getAmount(),
+                System.out.printf("%-15s %-15s $%-15.2f %-15s\n",
+                        transaction.getTransactionID().toString(),
+                        transaction.getTransactionType(),
+                        transaction.getAmount(),
                         dateFormat.format(transaction.getDate()));
+
             }
             System.out.println("----------------------------------------------------");
         }

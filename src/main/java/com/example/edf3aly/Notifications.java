@@ -2,10 +2,12 @@ package com.example.edf3aly;
 
 import java.util.Date;
 
-public class Notifacations {
+public class Notifications {
 
     String message;
-    public Notifacations(int i, String transactionSuccessful, Date date, User user1) {
+    public Notifications(int i, String message, Date date, User user1) {
+        this.message = message;
+
     }
 
     public String getMessage() {

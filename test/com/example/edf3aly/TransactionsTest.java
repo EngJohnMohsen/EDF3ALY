@@ -4,21 +4,22 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class TransactionsTest {
 
     @Test
     public void testTransactionID() {
-        int expectedTransactionID = 123;
+        UUID expectedTransactionID = UUID.randomUUID();
         Transactions transactions = new Transactions(expectedTransactionID, "purchase", 100.0, new Date());
-        int actualTransactionID = transactions.getTransactionID();
+        UUID actualTransactionID = transactions.getTransactionID();
         Assertions.assertEquals(expectedTransactionID, actualTransactionID);
     }
 
     @Test
     public void testTransactionType() {
         String expectedTransactionType = "purchase";
-        Transactions transactions = new Transactions(123, expectedTransactionType, 100.0, new Date());
+        Transactions transactions = new Transactions(UUID.randomUUID(), expectedTransactionType, 100.0, new Date());
         String actualTransactionType = transactions.getTransactionType();
         Assertions.assertEquals(expectedTransactionType, actualTransactionType);
     }
@@ -26,7 +27,7 @@ public class TransactionsTest {
     @Test
     public void testAmount() {
         double expectedAmount = 100.0;
-        Transactions transactions = new Transactions(123, "purchase", expectedAmount, new Date());
+        Transactions transactions = new Transactions(UUID.randomUUID(), "purchase", expectedAmount, new Date());
         double actualAmount = transactions.getAmount();
         Assertions.assertEquals(expectedAmount, actualAmount, 0.01); // 0.01 is the delta for double comparison
     }
@@ -34,7 +35,7 @@ public class TransactionsTest {
     @Test
     public void testDate() {
         Date expectedDate = new Date();
-        Transactions transactions = new Transactions(123, "purchase", 100.0, expectedDate);
+        Transactions transactions = new Transactions(UUID.randomUUID(), "purchase", 100.0, expectedDate);
         Date actualDate = transactions.getDate();
         Assertions.assertEquals(expectedDate, actualDate);
     }
@@ -42,7 +43,7 @@ public class TransactionsTest {
     @Test
     public void testSuccessfulTransaction() {
         double expectedAmount = 100.0;
-        Transactions transactions = new Transactions(123, "purchase", expectedAmount, new Date());
+        Transactions transactions = new Transactions(UUID.randomUUID(), "purchase", expectedAmount, new Date());
         boolean isSuccessful = transactions.processTransaction();
         Assertions.assertTrue(isSuccessful);
     }
@@ -50,7 +51,7 @@ public class TransactionsTest {
     @Test
     public void testInvalidTransaction() {
         double expectedAmount = -50.0;
-        Transactions transactions = new Transactions(123, "purchase", expectedAmount, new Date());
+        Transactions transactions = new Transactions(UUID.randomUUID(), "purchase", expectedAmount, new Date());
         boolean isSuccessful = transactions.processTransaction();
         Assertions.assertFalse(isSuccessful);
     }

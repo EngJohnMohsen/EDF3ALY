@@ -2,6 +2,7 @@ package com.example.edf3aly;
 
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.UUID;
 
 public class Transfer extends Transactions {
 
@@ -9,7 +10,7 @@ public class Transfer extends Transactions {
     private Account sourceAccount;
     private User user;
 
-    public Transfer(int transactionID, double amount, Account targetAccount, Account sourceAccount) {
+    public Transfer(UUID transactionID, double amount, Account targetAccount, Account sourceAccount) {
         super(transactionID, "Transfer", amount, new Date());
         this.targetAccount = targetAccount;
         this.sourceAccount = sourceAccount;

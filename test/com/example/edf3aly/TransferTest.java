@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.InputMismatchException;
+import java.util.Date;
+import java.util.UUID;
 
 class TransferTest {
 
@@ -18,9 +19,7 @@ class TransferTest {
     @AfterEach
     void tearDown() {
         System.out.println("Test Case Ended...\n------------------");
-
     }
-
 
     // TC1: Successful transfer
     @Test
@@ -30,7 +29,8 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
-        Transfer transfer = new Transfer(1, 200.0, targetAccount, sourceAccount);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, 200.0, targetAccount, sourceAccount);
         transfer.setUser(user);
 
         assertTrue(transfer.transferMoney());
@@ -46,7 +46,8 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
-        Transfer transfer = new Transfer(1, 200.0, targetAccount, sourceAccount);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, 200.0, targetAccount, sourceAccount);
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -62,7 +63,8 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
-        Transfer transfer = new Transfer(1, 200.0, targetAccount, sourceAccount);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, 200.0, targetAccount, sourceAccount);
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -78,7 +80,8 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
-        Transfer transfer = new Transfer(1, -200.0, targetAccount, sourceAccount);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, -200.0, targetAccount, sourceAccount);
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -95,8 +98,10 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
-        Transfer transfer1 = new Transfer(1, 200.0, targetAccount1, sourceAccount);
-        Transfer transfer2 = new Transfer(2, 300.0, targetAccount2, sourceAccount);
+        UUID transactionID1 = UUID.randomUUID();
+        UUID transactionID2 = UUID.randomUUID();
+        Transfer transfer1 = new Transfer(transactionID1, 200.0, targetAccount1, sourceAccount);
+        Transfer transfer2 = new Transfer(transactionID2, 300.0, targetAccount2, sourceAccount);
         transfer1.setUser(user);
         transfer2.setUser(user);
 
@@ -118,7 +123,8 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
-        Transfer transfer = new Transfer(1, 0.0, targetAccount, sourceAccount);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, 0.0, targetAccount, sourceAccount);
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -133,7 +139,8 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
-        Transfer transfer = new Transfer(1, 200.0, sourceAccount, sourceAccount);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, 200.0, sourceAccount, sourceAccount);
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -148,12 +155,12 @@ class TransferTest {
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", null);
 
-        Transfer transfer = new Transfer(1, 200.0, targetAccount, null);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, 200.0, targetAccount, null);
         transfer.setUser(user);
 
         assertThrows(NullPointerException.class, () -> {
             transfer.transferMoney();
         });
     }
-
 }

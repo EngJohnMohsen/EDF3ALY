@@ -8,7 +8,7 @@ public class User {
     private String phoneNo;
     private String username;
     private String password;
-    private static Account account;
+    private  Account account;
 
     public User(String name, String ssn, String phoneNo, String username, String password,Account account)
     {

@@ -47,7 +47,7 @@ public class Account {
 
     public void newBalance(double accBalance, double amount, String transactionType) {
         if (transactionType.equals("Transfer") ||
-                transactionType.equals("Buy") || transactionType.equals("PayBills")) {
+                transactionType.equals("Buy_Item") || transactionType.equals("Pay_Bills")) {
             this.accBalance = accBalance - amount;
         } else {
             System.out.println("Error");
@@ -57,6 +57,6 @@ public class Account {
     public enum AccountType { //will change account type to enum
         Savings,
         Checking,
-        Credit
-    }
+      Credit
+}
 }
