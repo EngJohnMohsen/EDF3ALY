@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Main extends Application {
+public class Main extends Application implements Initializable {
+
+    @FXML
+    private TextField AccBalance;
 
     @FXML
     public Button Check_btn;
@@ -40,9 +44,6 @@ public class Main extends Application {
 
     @FXML
     public TextField RegLastN;
-
-    @FXML
-    public TextField RegNationalID;
 
     @FXML
     public PasswordField RegPassword;
@@ -82,17 +83,17 @@ public class Main extends Application {
     public Account account;
 
     //Premium account begins with 77 and Regular account begins with 88 and VIP account begins with 99
-    static Account myUserAcc = new Account(Account.AccountType.Credit, "77555400", 15000.00);
-    static Account myUserAcc2 = new Account(Account.AccountType.Savings, "88565401", 2000.00);
-    static Account myUserAcc3 = new Account(Account.AccountType.Checking, "99165481", 600000.00);
+    public static Account myUserAcc = new Account(Account.AccountType.Credit, "77555400", 15000.00);
+    public static Account myUserAcc2 = new Account(Account.AccountType.Savings, "88565401", 2000.00);
+    public static Account myUserAcc3 = new Account(Account.AccountType.Checking, "99165481", 600000.00);
 
-    static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass", myUserAcc);
-    static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass", myUserAcc2);
-    static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1", myUserAcc3);
+    public static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass", myUserAcc);
+    public static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass", myUserAcc2);
+    public static User myUser3 = new User("Mohamed", "5279", "001234", "Mo1", "Mo1", myUserAcc3);
 
     static List<User> sysUsers = new ArrayList<>();
 
-    String[] AccountType = new String[]{"Regular", "Premium", "VIP"};
+    String[] AccountType = new String[]{"Credit", "Savings", "Payments"};
 
     public static void main(String[] args) {
         sysUsers.add(myUser);
@@ -131,12 +132,6 @@ public class Main extends Application {
         return null;
     }
 
-
-    @FXML
-    public void showFinalRegPane() {
-        FinalRegAcc_pane.setVisible(true);
-        createAcc_pane.setVisible(false);
-    }
 
     @FXML
     public void createAcc() {
@@ -197,10 +192,10 @@ public class Main extends Application {
 
     @FXML
     public void registerAcc(ActionEvent event) {
-        if (RegCheck.getText().equals("")) {
+        if (RegCheck.getText().equals("") || RegUserName.getText().equals("") || RegPassword.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Empty Field");
-            alert.setHeaderText("Field are empty");
+            alert.setTitle("Empty Fields");
+            alert.setHeaderText("Fields are empty");
             alert.setContentText("Please fill in the field.");
             alert.show();
         } else {
@@ -216,8 +211,8 @@ public class Main extends Application {
                     createAcc_pane.setVisible(false);
                     login_pane.setVisible(true);
                 } else {
-                    RegUserName.setDisable(false);
-                    RegPassword.setDisable(false);
+                    createAcc_pane.setVisible(false);
+                    FinalRegAcc_pane.setVisible(true);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -227,30 +222,33 @@ public class Main extends Application {
 
     @FXML
     public void registerAcc2() {
-        if (!this.RegName.getText().equals("") && !this.RegPassword.getText().equals("") &&
-                !this.RegNationalID.getText().equals("") && !this.RegPhoneN.getText().equals("")) {
+        if (!this.RegName.getText().equals("") && !this.AccBalance.getText().equals("") &&
+                !this.RegCheck.getText().equals("") && !this.RegPhoneN.getText().equals("") && this.Account_Type.getValue() != null) {
             try {
                 String userName = this.RegUserName.getText();
                 String password = this.RegPassword.getText();
                 String name = this.RegName.getText();
-                String nationalID = this.RegNationalID.getText();
+                String nationalID = this.RegCheck.getText();
                 String phoneNumber = this.RegPhoneN.getText();
+                String accountType = this.Account_Type.getValue().toString();
+                double balance = Double.parseDouble(this.AccBalance.getText());
+//                Account myUserAcc = new Account(accountType, balance);
                 User user = new User(name, nationalID, phoneNumber, userName, password,myUserAcc);
                 if (user.register(sysUsers)) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Success");
                     alert.setHeaderText("Account successfully created");
-                    String var10001 = this.RegFirstN.getText();
-                    alert.setContentText(var10001 + " " + this.RegLastN.getText() + " successfully added");
+//                    String var10001 = this.RegName.getText();
+//                    alert.setContentText(var10001 + " " + this.RegLastN.getText() + " successfully added");
                     alert.show();
                     this.RegCheck.clear();
                     this.RegUserName.clear();
                     this.RegPassword.clear();
                     this.RegName.clear();
-                    this.RegNationalID.clear();
+                    this.RegCheck.clear();
                     this.RegPhoneN.clear();
-                    this.RegUserName.setDisable(true);
-                    this.RegPassword.setDisable(true);
+                    this.AccBalance.clear();
+                    this.Account_Type.setValue("Account Type");
                     this.FinalRegAcc_pane.setVisible(false);
                     this.login_pane.setVisible(true);
                 }
@@ -269,10 +267,10 @@ public class Main extends Application {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.Account_Type.getItems().addAll(this.AccountType);
-        this.Account_Type.setOnAction(this::getGender);
+        this.Account_Type.setOnAction(this::getAccountType);
     }
 
-    public void getGender(ActionEvent event) {
+    public void getAccountType(ActionEvent event) {
         String Account = (String)this.Account_Type.getValue();
     }
 }
