@@ -70,7 +70,7 @@
             </ImageView>
          </children>
         </AnchorPane>
-      <AnchorPane fx:id="Transfer_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+      <AnchorPane fx:id="Transfer_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" layoutX="2.0" layoutY="1.0" opacity="0.21" pickOnBounds="true">
                <image>
@@ -86,13 +86,15 @@
                   <Font name="Times New Roman Bold Italic" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="58.0" layoutY="209.0" text="Amount" />
-            <Label layoutX="338.0" layoutY="209.0" text="Recipient Account" />
+            <Label layoutX="58.0" layoutY="218.0" text="Amount:" />
+            <Label layoutX="338.0" layoutY="218.0" text="Recipient Account:" />
             <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="250.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img_1.png" />
                </image>
             </ImageView>
+            <TextField fx:id="YourAccNoTransfer" layoutX="58.0" layoutY="166.0" />
+            <Label layoutX="58.0" layoutY="137.0" text="Your Account:" />
          </children></AnchorPane>
       <AnchorPane fx:id="History_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
@@ -157,14 +159,14 @@
             <Label layoutX="338.0" layoutY="218.0" text="Amount:" />
             <Label layoutX="58.0" layoutY="218.0" text="Store ID:" />
             <TextField fx:id="StoreID_txt" layoutX="58.0" layoutY="243.0" />
-            <Button fx:id="BuyItem_Btn" layoutX="235.0" layoutY="312.0" mnemonicParsing="false" stylesheets="@Buttons2.css" text="Buy" />
+            <Button fx:id="BuyItem_Btn" layoutX="235.0" layoutY="312.0" mnemonicParsing="false" onAction="#BuyItem" stylesheets="@Buttons2.css" text="Buy" />
             <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="249.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img_2.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
-      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
+      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" opacity="0.21" pickOnBounds="true">
                <image>

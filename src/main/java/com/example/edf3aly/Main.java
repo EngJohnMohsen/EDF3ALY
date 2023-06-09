@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
 
+    public static int currentUserIndex;
+    public static User user;
     @FXML
     private TextField AccBalance;
 
@@ -83,9 +85,9 @@ public class Main extends Application implements Initializable {
     public Account account;
 
     //Premium account begins with 77 and Regular account begins with 88 and VIP account begins with 99
-    public static Account myUserAcc = new Account(Account.AccountType.Credit, "77555400", 15000.00);
-    public static Account myUserAcc2 = new Account(Account.AccountType.Savings, "88565401", 2000.00);
-    public static Account myUserAcc3 = new Account(Account.AccountType.Checking, "99165481", 600000.00);
+    public static Account myUserAcc = new Account(Account.AccountType.Credit, "1005-1234", 15000.00);
+    public static Account myUserAcc2 = new Account(Account.AccountType.Savings, "1009-8684", 2000.00);
+    public static Account myUserAcc3 = new Account(Account.AccountType.Checking, "1007-5786", 600000.00);
 
     public static User myUser = new User("Tamer", "1345", "123400", "Tam1", "wordpass", myUserAcc);
     public static User myUser2 = new User("Ahmed", "8647", "004321", "Ahm1", "wrongpass", myUserAcc2);
@@ -124,6 +126,35 @@ public class Main extends Application implements Initializable {
                 if (userList.get(i).getSSN().equals(nationalID)) {
                     System.out.println("Found");
                     return userList.get(i);
+                } else {
+                    System.out.println("Not Found");
+                }
+            }
+        }
+        return null;
+    }
+
+    public static boolean findUserAccount(String accountNo, List<User> userList) {
+
+        if (!userList.isEmpty()) {
+            for (int i = 0; i < userList.size(); i++) {
+                if (userList.get(i).getAccount().getAccNo().equals(accountNo)) {
+                    return true;
+//                    return userList.get(i);
+                } else {
+                    System.out.println("Not Found");
+                }
+            }
+        }
+        return false;
+    }
+
+    public static Account findUserAccount2(String accountNo, List<User> userList) {
+
+        if (!userList.isEmpty()) {
+            for (int i = 0; i < userList.size(); i++) {
+                if (userList.get(i).getAccount().getAccNo().equals(accountNo)) {
+                    return userList.get(i).getAccount();
                 } else {
                     System.out.println("Not Found");
                 }

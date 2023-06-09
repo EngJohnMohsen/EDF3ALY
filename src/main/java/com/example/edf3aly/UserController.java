@@ -10,6 +10,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.UUID;
+
+import static com.example.edf3aly.Main.findUser;
+import static com.example.edf3aly.Main.findUserAccount;
+
 public class UserController {
 
     @FXML
@@ -107,6 +112,9 @@ public class UserController {
 
     @FXML
     private Label User_SSN_Change;
+
+    @FXML
+    private TextField YourAccNoTransfer;
 
     @FXML
     private Button membr_btn;
@@ -220,7 +228,11 @@ public class UserController {
     }
 
     public void Transfer(ActionEvent event) {
-        if(TransferAmount.getText().isEmpty() || TransferToAccount.getText().isEmpty()){
+        String accNum = TransferToAccount.getText();
+        double amount = Double.parseDouble(TransferAmount.getText());
+        String yourAccNum = YourAccNoTransfer.getText();
+        UUID transactionID = UUID.randomUUID();
+        if(TransferAmount.getText().isEmpty() || TransferToAccount.getText().isEmpty() || YourAccNoTransfer.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Transfer Error");
@@ -229,18 +241,40 @@ public class UserController {
         }
         else{
             try {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation");
-                alert.setHeaderText("Transfer Confirmation");
-                alert.setContentText("Are you sure you want to transfer " + TransferAmount.getText() + " to " + TransferToAccount.getText() + "?");
-                if (alert.showAndWait().get() == ButtonType.OK) {
-                    //Transfer
-                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                    alert1.setTitle("Information");
-                    alert1.setHeaderText("Transfer Successful");
-                    alert1.setContentText("You have successfully transferred " + TransferAmount.getText() + " to " + TransferToAccount.getText());
-                    alert1.showAndWait();
-                    showTransactioPane();
+                if(!findUserAccount(TransferToAccount.getText(), Main.sysUsers) || !findUserAccount(YourAccNoTransfer.getText(), Main.sysUsers)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Transfer Error");
+                    alert.setContentText("Account does not exist");
+                    alert.showAndWait();
+                }else if(amount <= Main.findUserAccount2(yourAccNum, Main.sysUsers).getAccBalance()){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText("Transfer Confirmation");
+                    alert.setContentText("Are you sure you want to transfer " + TransferAmount.getText() + " to " + TransferToAccount.getText() + "?");
+                    if (alert.showAndWait().get() == ButtonType.OK) {
+                        Transfer transfer = new Transfer(transactionID, amount, Main.findUserAccount2(accNum, Main.sysUsers), Main.findUserAccount2(yourAccNum, Main.sysUsers));
+                        if(transfer.transferMoney()) {
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setTitle("Information");
+                            alert1.setHeaderText("Transfer Successful");
+                            alert1.setContentText("You have successfully transferred " + TransferAmount.getText() + " to " + TransferToAccount.getText());
+                            alert1.showAndWait();
+                            showTransactioPane();
+                        } else {
+                            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                            alert1.setTitle("Error");
+                            alert1.setHeaderText("Transfer Error");
+                            alert1.setContentText("You do not have enough money in your account");
+                            alert1.showAndWait();
+                        }
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Transfer Error");
+                    alert.setContentText("You do not have enough money in your account");
+                    alert.showAndWait();
                 }
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -250,6 +284,9 @@ public class UserController {
     }
 
     public void Pay_Bill(ActionEvent event){
+        String billName = BillName.getText();
+        double amount = Double.parseDouble(BillAmount.getText());
+        UUID transactionID = UUID.randomUUID();
         if(BillAmount.getText().isEmpty() || BillName.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

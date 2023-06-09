@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class LoginController {
 
+    public static User user;
     @FXML
     private Button Check_btn;
 
