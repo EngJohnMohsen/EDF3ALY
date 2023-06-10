@@ -34,7 +34,7 @@
         </ImageView>
         <Pane fx:id="login_pane" layoutX="145.0" layoutY="54.0" prefHeight="293.0" prefWidth="225.0" style="-fx-background-color: white;">
             <children>
-                <TextField fx:id="userName" layoutX="39.0" layoutY="106.0" promptText="UserName" />
+                <TextField fx:id="userName" layoutX="39.0" layoutY="106.0" onAction="#login" promptText="UserName" />
                 <Button layoutX="38.0" layoutY="221.0" mnemonicParsing="false" onAction="#login" prefHeight="28.0" prefWidth="149.0" stylesheets="@Buttons.css" text="Login" textFill="WHITE">
                     <font>
                         <Font name="Times New Roman Italic" size="15.0" />

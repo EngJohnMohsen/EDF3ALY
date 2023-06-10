@@ -331,21 +331,21 @@ public class UserController implements Initializable {
         }
     }
 
-//    public void BuyItem(ActionEvent event) {
-//        int itemID = Integer.parseInt(ItemID_Txt.getText());
-//        String itemName = ItemName_Txt.getText();
-//        int itemAmount = Integer.parseInt(ItemAmount_txt.getText());
-//        int storeID = Integer.parseInt(StoreID_txt.getText());
-//        UUID transactionID = UUID.randomUUID();
-//        if(ItemAmount_txt.getText().isEmpty() || StoreID_txt.getText().isEmpty() || ItemID_Txt.getText().isEmpty() || ItemName_Txt.getText().isEmpty()){
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("Buy Error");
-//            alert.setContentText("Please fill all the fields");
-//            alert.showAndWait();
-//        }
-//        else{
-//            try {
+    public void BuyItem(ActionEvent event) {
+        int itemID = Integer.parseInt(ItemID_Txt.getText());
+        String itemName = ItemName_Txt.getText();
+        int itemAmount = Integer.parseInt(ItemAmount_txt.getText());
+        int storeID = Integer.parseInt(StoreID_txt.getText());
+        UUID transactionID = UUID.randomUUID();
+        if(ItemAmount_txt.getText().isEmpty() || StoreID_txt.getText().isEmpty() || ItemID_Txt.getText().isEmpty() || ItemName_Txt.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Buy Error");
+            alert.setContentText("Please fill all the fields");
+            alert.showAndWait();
+        }
+        else{
+            try {
 //                if(itemAmount <= main.returnUser().getAccount().getAccBalance()) {
 //                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 //                    alert.setTitle("Confirmation");
@@ -368,12 +368,12 @@ public class UserController implements Initializable {
 //                    alert.setContentText("You do not have enough money in your account");
 //                    alert.showAndWait();
 //                }
-//            } catch (Exception exception) {
-//                exception.printStackTrace();
-//                exception.getCause();
-//            }
-//        }
-//    }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                exception.getCause();
+            }
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

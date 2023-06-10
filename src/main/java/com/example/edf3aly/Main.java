@@ -207,7 +207,6 @@ public class Main extends Application implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void login(ActionEvent event) throws IOException {
         if (userName.getText().equals("") || this.password.getText().equals("")) {
@@ -221,6 +220,9 @@ public class Main extends Application implements Initializable {
             String passwordText = password.getText();
             User user = (User) findUser(userNameText, sysUsers);
             try {
+                Parent root;
+                Scene scene;
+                Stage stage;
                 if (user == null || !password.getText().equals(user.getPassword())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Incorrect Login Information");
@@ -228,10 +230,10 @@ public class Main extends Application implements Initializable {
                     alert.setContentText("Pleaser Try again.");
                     alert.show();
                 } else if ((userName.getText().equals(user.getUsername()) && password.getText().equals(user.getPassword()))) {
-                    Stage stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
-                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
+                    new Stage();
+                    root = (Parent)FXMLLoader.load(this.getClass().getResource("User.fxml"));
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
                     stage.centerOnScreen();
                     stage.setScene(scene);
                     stage.show();
