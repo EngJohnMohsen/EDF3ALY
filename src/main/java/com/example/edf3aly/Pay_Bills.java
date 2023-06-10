@@ -6,7 +6,6 @@ import java.util.UUID;
 
 public class Pay_Bills extends Transactions {
     private static double totalAmountPaid = 0.0;
-    private int billID;
     private String billName;
     private boolean automatically;
     private int paymentDay;
@@ -26,15 +25,6 @@ public class Pay_Bills extends Transactions {
         return totalAmountPaid;
     }
 
-    public int getBillID()
-    {
-        return billID;
-    }
-
-    public void setBillID(int billID)
-    {
-        this.billID = billID;
-    }
 
     public String getBillName()
     {
@@ -99,14 +89,14 @@ public class Pay_Bills extends Transactions {
             if (account.getAccBalance() >= amount) {
                 account.addTransaction(this);
                 account.newBalance(account.getAccBalance(), amount, getTransactionType());
-                System.out.println("Payment successful for bill ID: " + billID);
+                System.out.println("Payment successful ");
             } else {
-                System.out.println("Insufficient funds in the account for bill ID: " + billID);
+                System.out.println("Insufficient funds in the account " );
             }
         } else {
-            throw new IllegalArgumentException("Payment day not reached for bill ID: " +
-                    "Or Automatically payment isn't activated" + billID);
-        }
-
+            throw new IllegalArgumentException("Payment day not reached " +
+                    "Or Automatically payment isn't activated");
 }
+
+    }
 }

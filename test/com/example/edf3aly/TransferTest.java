@@ -22,7 +22,7 @@ class TransferTest {
 
     // TC1: Successful transfer
     @Test
-    public void transfer1() {
+    public void transferSuccess() {
         Account sourceAccount = new Account(Account.AccountType.Savings, "1001-1234", 600.0);
         Account targetAccount = new Account(Account.AccountType.Savings, "1001-2345", 0.0);
 

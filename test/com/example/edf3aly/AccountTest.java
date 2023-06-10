@@ -65,14 +65,14 @@ public class AccountTest {
     @Test
     public void testNewBalanceBuy() {
         Account acc = new Account(Account.AccountType.Savings, "1001-2345", 1000.0);
-        acc.newBalance(acc.getAccBalance(), 200.0, "Buy");
+        acc.newBalance(acc.getAccBalance(), 200.0, "Buy_Item");
         Assertions.assertEquals(800.0, acc.getAccBalance());
     }
 
     @Test
     public void testNewBalancePayBills() {
         Account acc = new Account(Account.AccountType.Savings, "1001-2345", 1000.0);
-        acc.newBalance(acc.getAccBalance(), 100.0, "PayBills");
+        acc.newBalance(acc.getAccBalance(), 100.0, "Pay_Bills");
         Assertions.assertEquals(900.0, acc.getAccBalance());
     }
 

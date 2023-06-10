@@ -1,5 +1,6 @@
 package com.example.edf3aly;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class User {
@@ -75,6 +76,19 @@ public class User {
         }
         usersList.add(this);
         System.out.println("\nUser: " + this.getName() + " Successfully Added\n");
+        return true;
+    }
+    public boolean checkUsername() {
+        if (username.isEmpty() || username.matches(".*\\d.*") || !username.matches("\\p{Alnum}+")) {
+            throw new InputMismatchException("Invalid username");
+        }
+        return true;
+    }
+
+    public boolean checkPassword() {
+        if (password.isEmpty() || password.length() < 6 || !password.matches(".*\\p{Alpha}.*")) {
+            throw new InputMismatchException("Invalid password");
+        }
         return true;
     }
 
