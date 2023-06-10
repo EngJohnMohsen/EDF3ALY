@@ -3,7 +3,7 @@ package com.example.edf3aly;
 import java.util.Date;
 import java.util.UUID;
 
-public class Transactions {
+public  class Transactions {
     private UUID transactionID;
     private String transactionType;
     public double amount;
@@ -48,11 +48,8 @@ public class Transactions {
         this.date = date;
     }
 
-    public boolean processTransaction() {
-        if (amount > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
+    public  void performTransaction(){
+    };
 }
+

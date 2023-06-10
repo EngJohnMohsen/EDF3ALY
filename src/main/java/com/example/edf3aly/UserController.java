@@ -7,12 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.UUID;
 
-import static com.example.edf3aly.Main.findUser;
 import static com.example.edf3aly.Main.findUserAccount;
 
 public class UserController {
@@ -254,7 +252,7 @@ public class UserController {
                     alert.setContentText("Are you sure you want to transfer " + TransferAmount.getText() + " to " + TransferToAccount.getText() + "?");
                     if (alert.showAndWait().get() == ButtonType.OK) {
                         Transfer transfer = new Transfer(transactionID, amount, Main.findUserAccount2(accNum, Main.sysUsers), Main.findUserAccount2(yourAccNum, Main.sysUsers));
-                        if(transfer.transferMoney()) {
+                        if(transfer.TransferMoney()) {
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                             alert1.setTitle("Information");
                             alert1.setHeaderText("Transfer Successful");

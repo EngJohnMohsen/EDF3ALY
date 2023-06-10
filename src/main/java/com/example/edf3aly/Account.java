@@ -1,14 +1,19 @@
 package com.example.edf3aly;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private String accType;
     private String accNo;
     private double accBalance;
+    private List<Transactions> transactions;
     public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance) {
         //this.accType = accType;
         this.accNo = accNo;
         this.accBalance = accBalance;
         this.accType = accountType.toString();
+        this.transactions = new ArrayList<>();
     }
 
     public String getAccType() {
@@ -52,6 +57,12 @@ public class Account {
         } else {
             System.out.println("Error");
         }
+    }
+    public void addTransaction(Transactions transaction) {
+        transactions.add(transaction);
+    }
+    public List<Transactions> getTransactions() {
+        return transactions;
     }
 
     public enum AccountType { //will change account type to enum

@@ -31,7 +31,7 @@ class Pay_BillsTest {
 
         UUID transactionID = UUID.randomUUID();
 
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, 123, "Electricity", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "Electricity", true);
 
         // Use the getter methods to retrieve the values
         int billID = payBills.getBillID();
@@ -50,7 +50,7 @@ class Pay_BillsTest {
     public void testRepeatedPayment() {
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, 1, "Electricity", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "Electricity", true);
 
         // Call the repeatedPayment method
         int paymentDay = 15;
@@ -69,7 +69,7 @@ class Pay_BillsTest {
     public void testSetAndGetBillName() {
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, 1, "", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "", true);
 
         // Set the bill name
         String billName = "Electricity";
@@ -88,7 +88,7 @@ class Pay_BillsTest {
     public void testSetAndGetBillID() {
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, 0, "Electricity", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "Electricity", true);
 
         // Set the bill ID
         int billID = 1;
@@ -110,11 +110,11 @@ class Pay_BillsTest {
 
         // Create a Pay_Bills instance with automatically set to true
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills1 = new Pay_Bills(transactionID, 200.0, 1, "Electricity", true);
+        Pay_Bills payBills1 = new Pay_Bills(transactionID, 200.0,  "Electricity", true);
         payBills1.setAccount(account);
         UUID transactionID2= UUID.randomUUID();
         // Create a Pay_Bills instance with automatically set to false
-        Pay_Bills payBills2 = new Pay_Bills(transactionID2, 150.0, 2, "Water", false);
+        Pay_Bills payBills2 = new Pay_Bills(transactionID2, 150.0,  "Water", false);
         payBills2.setAccount(account);
 
         // Verify the isAutomatically() method for payBills1
@@ -130,7 +130,7 @@ class Pay_BillsTest {
     public void Test_PaymentDay_0() {
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, 1, "Electricity", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "Electricity", true);
 
         // Set the payment day
         int paymentDay = 15;
@@ -147,7 +147,7 @@ class Pay_BillsTest {
     public void Test_PaymentDay_1() {
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, 1, "Internet", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "Internet", true);
         // Set the payment day
         int paymentDay = 20;
         payBills.setPaymentDay(paymentDay);
@@ -165,7 +165,7 @@ class Pay_BillsTest {
     public void testPaymentAmount_0() {
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, 1, "Electricity", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0, "Electricity", true);
 
         // Get the payment amount
         double paymentAmount = payBills.getAmount();
@@ -183,9 +183,9 @@ class Pay_BillsTest {
         UUID transactionID = UUID.randomUUID();
         UUID transactionID2 = UUID.randomUUID();
         UUID transactionID3 = UUID.randomUUID();
-        Pay_Bills payBills1 = new Pay_Bills(transactionID, 200.0, 1, "Electricity", true);
-        Pay_Bills payBills2 = new Pay_Bills(transactionID2, 150.0, 2, "Water"      , true);
-        Pay_Bills payBills3 = new Pay_Bills(transactionID3, 100.0, 3, "Internet"   , true);
+        Pay_Bills payBills1 = new Pay_Bills(transactionID, 200.0,  "Electricity", true);
+        Pay_Bills payBills2 = new Pay_Bills(transactionID2, 150.0,  "Water"      , true);
+        Pay_Bills payBills3 = new Pay_Bills(transactionID3, 100.0, "Internet"   , true);
 
         // Modify the payment day
         int paymentDay = 9;
@@ -223,7 +223,7 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 200.0, 1, "Electricity", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 200.0, "Electricity", true);
 
         // Modify the payment day
         int paymentDay = 9;
@@ -253,7 +253,7 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 400.0, 1, "Electricity", true);
+        Pay_Bills payBills = new Pay_Bills(transactionID, 400.0,  "Electricity", true);
 
         // Modify the payment day
         int paymentDay = 9;
@@ -284,7 +284,7 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills for the first bill
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0, 1, "Electricity", true);
+        Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0,  "Electricity", true);
         bill1.setPaymentDay(9);
         bill1.setAccount(account);
 
@@ -293,14 +293,14 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills for the second bill
         UUID transactionID2 = UUID.randomUUID();
-        Pay_Bills bill2 = new Pay_Bills(transactionID2, 150.0, 2, "Internet", true);
+        Pay_Bills bill2 = new Pay_Bills(transactionID2, 150.0,  "Internet", true);
         bill2.setPaymentDay(9);
         bill2.setAccount(account);
 
         // Perform the payment for bill2
         bill2.performTransaction();
         UUID transactionID3 = UUID.randomUUID();
-        Pay_Bills bill3 = new Pay_Bills(transactionID3, 150.0, 3, "Telephone", true);
+        Pay_Bills bill3 = new Pay_Bills(transactionID3, 150.0,  "Telephone", true);
         bill3.setPaymentDay(9);
         bill3.setAccount(account);
 
@@ -323,7 +323,7 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills for the first bill
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0, 1, "Electricity", true);
+        Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0,  "Electricity", true);
         bill1.setPaymentDay(9);
         bill1.setAccount(account);
         try {
@@ -336,7 +336,7 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills for the second bill
         UUID transactionID2 = UUID.randomUUID();
-        Pay_Bills bill2 = new Pay_Bills(transactionID2, 150.0, 2, "Internet", true);
+        Pay_Bills bill2 = new Pay_Bills(transactionID2, 150.0,  "Internet", true);
         bill2.setPaymentDay(15);
         bill2.setAccount(account);
 
@@ -367,7 +367,7 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills for the first bill
         UUID transactionID = UUID.randomUUID();
-        Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0, 1, "Electricity", false);
+        Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0,  "Electricity", false);
         bill1.setPaymentDay(9);
         bill1.setAccount(account);
         try {
@@ -382,7 +382,7 @@ class Pay_BillsTest {
 
         // Create an instance of Pay_Bills for the second bill
         UUID transactionID2 = UUID.randomUUID();
-        Pay_Bills bill2 = new Pay_Bills(transactionID2, 150.0, 2, "Internet", true);
+        Pay_Bills bill2 = new Pay_Bills(transactionID2, 150.0,  "Internet", true);
         bill2.setPaymentDay(15);
         bill2.setAccount(account);
 

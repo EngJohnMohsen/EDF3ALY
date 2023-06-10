@@ -11,10 +11,9 @@ public class Pay_Bills extends Transactions {
     private boolean automatically;
     private int paymentDay;
     private Account account; // Add account field
-    public Pay_Bills(UUID transactionID, double amount, int billID, String billName, boolean automatically)
+    public Pay_Bills(UUID transactionID, double amount, String billName, boolean automatically)
     {
         super(transactionID, "Pay_Bills", amount,new Date());
-        this.billID = billID;
         this.billName = billName;
         this.automatically = automatically;
         // Update the total amount paid
@@ -81,6 +80,7 @@ public class Pay_Bills extends Transactions {
     }
 
 
+    @Override
     public void performTransaction() {
         // Check if the account is valid
         if (account == null) {
@@ -97,6 +97,7 @@ public class Pay_Bills extends Transactions {
         if (isAutomatically() && currentDay == paymentDay) {
             // Process the payment
             if (account.getAccBalance() >= amount) {
+                account.addTransaction(this);
                 account.newBalance(account.getAccBalance(), amount, getTransactionType());
                 System.out.println("Payment successful for bill ID: " + billID);
             } else {

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Date;
 import java.util.UUID;
 
 class TransferTest {
@@ -33,7 +32,7 @@ class TransferTest {
         Transfer transfer = new Transfer(transactionID, 200.0, targetAccount, sourceAccount);
         transfer.setUser(user);
 
-        assertTrue(transfer.transferMoney());
+        assertTrue(transfer.TransferMoney());
         assertEquals(400.0, sourceAccount.getAccBalance());
         assertEquals(200.0, targetAccount.getAccBalance());
     }
@@ -51,7 +50,7 @@ class TransferTest {
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            transfer.transferMoney();
+            transfer.TransferMoney();
         });
     }
 
@@ -68,7 +67,7 @@ class TransferTest {
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            transfer.transferMoney();
+            transfer.TransferMoney();
         });
     }
 
@@ -85,7 +84,7 @@ class TransferTest {
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            transfer.transferMoney();
+            transfer.TransferMoney();
         });
     }
 
@@ -106,8 +105,8 @@ class TransferTest {
         transfer2.setUser(user);
 
         assertAll(
-                () -> assertTrue(transfer1.transferMoney()),
-                () -> assertTrue(transfer2.transferMoney())
+                () -> assertTrue(transfer1.TransferMoney()),
+                () -> assertTrue(transfer2.TransferMoney())
         );
 
         assertEquals(500.0, sourceAccount.getAccBalance());
@@ -128,7 +127,7 @@ class TransferTest {
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            transfer.transferMoney();
+            transfer.TransferMoney();
         });
     }
 
@@ -144,7 +143,7 @@ class TransferTest {
         transfer.setUser(user);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            transfer.transferMoney();
+            transfer.TransferMoney();
         });
     }
 
@@ -160,7 +159,7 @@ class TransferTest {
         transfer.setUser(user);
 
         assertThrows(NullPointerException.class, () -> {
-            transfer.transferMoney();
+            transfer.TransferMoney();
         });
     }
 }

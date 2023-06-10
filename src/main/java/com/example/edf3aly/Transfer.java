@@ -1,7 +1,6 @@
 package com.example.edf3aly;
 
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.UUID;
 
 public class Transfer extends Transactions {
@@ -10,7 +9,9 @@ public class Transfer extends Transactions {
     private Account sourceAccount;
     private User user;
 
-    public Transfer(UUID transactionID, double amount, Account targetAccount, Account sourceAccount) {
+
+
+    public Transfer(UUID transactionID, double amount, Account targetAccount, Account sourceAccount){
         super(transactionID, "Transfer", amount, new Date());
         this.targetAccount = targetAccount;
         this.sourceAccount = sourceAccount;
@@ -32,7 +33,7 @@ public class Transfer extends Transactions {
         this.sourceAccount = sourceAccount;
     }
 
-    public boolean transferMoney() {
+    public boolean TransferMoney() {
         // Check if the transfer amount is valid
         if (amount <= 0) {
             throw new IllegalArgumentException("Invalid transfer amount");
@@ -71,13 +72,21 @@ public class Transfer extends Transactions {
         // Subtract the amount from the source account's balance
         double newSourceBalance = sourceAccount.getAccBalance() - amount;
         sourceAccount.setAccBalance(newSourceBalance);
+        sourceAccount.addTransaction(this);
 
         // Add the amount to the target account's balance
         double newTargetBalance = targetAccount.getAccBalance() + amount;
         targetAccount.setAccBalance(newTargetBalance);
+        targetAccount.addTransaction(this);
 
-        return true;
+        return true ;
     }
+
+    @Override
+    public void performTransaction() {
+        TransferMoney();
+    }
+
 
 
     public User getUser() {
@@ -87,4 +96,5 @@ public class Transfer extends Transactions {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

@@ -71,6 +71,7 @@ public class Buy_Item extends Transactions {
         this.itemName = itemName;
     }
 
+    @Override
     public void performTransaction() {
         if (account == null) {
             throw new IllegalStateException("No account associated with the transaction.");
@@ -81,6 +82,7 @@ public class Buy_Item extends Transactions {
             System.out.println(" - Item: " + itemName);
             System.out.println(" - Amount: " + itemPrice);
             System.out.println(" Successfully Paid");
+            account.addTransaction(this);
         } else {
             System.out.println("Transaction ID: " + getTransactionID());
             System.out.println(" - Item: " + itemName);
