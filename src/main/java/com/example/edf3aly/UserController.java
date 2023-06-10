@@ -2,6 +2,7 @@ package com.example.edf3aly;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,12 +11,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.UUID;
 
 import static com.example.edf3aly.Main.findUser;
 import static com.example.edf3aly.Main.findUserAccount;
 
-public class UserController {
+public class UserController implements Initializable {
+
+    @FXML
+    private ComboBox<String> AutomaticBill_Combo;
 
     @FXML
     private TextField BillAmount;
@@ -49,6 +55,12 @@ public class UserController {
 
     @FXML
     private TextField ItemAmount_txt;
+
+    @FXML
+    private TextField ItemID_Txt;
+
+    @FXML
+    private TextField ItemName_Txt;
 
     @FXML
     private Button Logout;
@@ -118,6 +130,8 @@ public class UserController {
 
     @FXML
     private Button membr_btn;
+
+    String[] AutomaticBill = new String[]{"Credit", "Savings", "Payments"};
 
 
     @FXML
@@ -197,7 +211,8 @@ public class UserController {
         History_pane.setVisible(true);
         UserDetails_Pane.setVisible(false);
     }
-    
+
+    Main main = new Main();
     public void showUserDetailsPane(){
         Transaction_pane.setVisible(false);
         Home_pane.setVisible(false);
@@ -207,10 +222,10 @@ public class UserController {
         History_pane.setVisible(false);
         UserDetails_Pane.setVisible(true);
 
-//        User_AccNum_Change.setText(String.valueOf(Main));
-//        User_AccType_Change.setText(LoginController.account.getAccType());
-//        User_Name_Change.setText(LoginController.user.getName());
-//        User_SSN_Change.setText(String.valueOf(LoginController.user.getSSN()));
+//        User_AccNum_Change.setText(main.returnUser().getAccount().getAccNo());
+//        User_AccType_Change.setText(main.returnUser().getAccount().getAccType());
+//        User_Name_Change.setText(main.returnUser().getName());
+//        User_SSN_Change.setText(main.returnUser().getSSN());
     }
     
     public void returnToHome(){
@@ -287,7 +302,7 @@ public class UserController {
         String billName = BillName.getText();
         double amount = Double.parseDouble(BillAmount.getText());
         UUID transactionID = UUID.randomUUID();
-        if(BillAmount.getText().isEmpty() || BillName.getText().isEmpty()){
+        if(BillAmount.getText().isEmpty() || BillName.getText().isEmpty() || AutomaticBill_Combo.getValue() != null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Pay Bill Error");
@@ -316,34 +331,62 @@ public class UserController {
         }
     }
 
-    public void BuyItem(ActionEvent event) {
-        if(ItemAmount_txt.getText().isEmpty() || StoreID_txt.getText().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Buy Error");
-            alert.setContentText("Please fill all the fields");
-            alert.showAndWait();
-        }
-        else{
-            try {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation");
-                alert.setHeaderText("Buy Confirmation");
-                alert.setContentText("Are you sure you want to buy " + ItemAmount_txt.getText() + " " + StoreID_txt.getText() + "?");
-                if (alert.showAndWait().get() == ButtonType.OK) {
-                    //Buy
-                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                    alert1.setTitle("Information");
-                    alert1.setHeaderText("Buy Successful");
-                    alert1.setContentText("You have successfully bought " + ItemAmount_txt.getText() + " " + StoreID_txt.getText());
-                    alert1.showAndWait();
-                    showTransactioPane();
-                }
-            } catch (Exception exception) {
-                exception.printStackTrace();
-                exception.getCause();
-            }
-        }
+//    public void BuyItem(ActionEvent event) {
+//        int itemID = Integer.parseInt(ItemID_Txt.getText());
+//        String itemName = ItemName_Txt.getText();
+//        int itemAmount = Integer.parseInt(ItemAmount_txt.getText());
+//        int storeID = Integer.parseInt(StoreID_txt.getText());
+//        UUID transactionID = UUID.randomUUID();
+//        if(ItemAmount_txt.getText().isEmpty() || StoreID_txt.getText().isEmpty() || ItemID_Txt.getText().isEmpty() || ItemName_Txt.getText().isEmpty()){
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Buy Error");
+//            alert.setContentText("Please fill all the fields");
+//            alert.showAndWait();
+//        }
+//        else{
+//            try {
+//                if(itemAmount <= main.returnUser().getAccount().getAccBalance()) {
+//                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//                    alert.setTitle("Confirmation");
+//                    alert.setHeaderText("Buy Confirmation");
+//                    alert.setContentText("Are you sure you want to buy " + ItemAmount_txt.getText() + " " + StoreID_txt.getText() + "?");
+//                    if (alert.showAndWait().get() == ButtonType.OK) {
+//                        Buy_Item buy_item = new Buy_Item(transactionID, itemAmount, itemName, storeID, itemID);
+//                        buy_item.performTransaction();
+//                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+//                        alert1.setTitle("Information");
+//                        alert1.setHeaderText("Buy Successful");
+//                        alert1.setContentText("You have successfully bought " + ItemAmount_txt.getText() + " " + StoreID_txt.getText());
+//                        alert1.showAndWait();
+//                        showTransactioPane();
+//                    }
+//                } else {
+//                    Alert alert = new Alert(Alert.AlertType.ERROR);
+//                    alert.setTitle("Error");
+//                    alert.setHeaderText("Buy Error");
+//                    alert.setContentText("You do not have enough money in your account");
+//                    alert.showAndWait();
+//                }
+//            } catch (Exception exception) {
+//                exception.printStackTrace();
+//                exception.getCause();
+//            }
+//        }
+//    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.AutomaticBill_Combo.getItems().addAll(this.AutomaticBill);
+        this.AutomaticBill_Combo.setOnAction(this::getAutomatic);
+
+//        User_AccNum_Change.setText(main.returnUser().getAccount().getAccNo());
+//        User_AccType_Change.setText(main.returnUser().getAccount().getAccType());
+//        User_Name_Change.setText(main.returnUser().getName());
+//        User_SSN_Change.setText(main.returnUser().getSSN());
     }
 
+    public void getAutomatic(ActionEvent event) {
+        String Auto = (String)this.AutomaticBill_Combo.getValue();
+    }
 }

@@ -80,7 +80,6 @@ public class Main extends Application implements Initializable {
     public String name;
     public String ssn;
     public String phoneNo;
-    public String username;
     public String passWord;
     public Account account;
 
@@ -105,10 +104,10 @@ public class Main extends Application implements Initializable {
         launch();
     }
 
-    public static User findUser(String userName, List<User> userList) {
+    public static User findUser(String username, List<User> userList) {
         if (!userList.isEmpty()) {
             for (User user : userList) {
-                if (user.getUsername().equals(userName)) {
+                if (user.getUsername().equals(username)) {
                     System.out.println("Found");
                     return user;
                 } else {
@@ -118,6 +117,29 @@ public class Main extends Application implements Initializable {
         }
         return null;
     }
+
+
+//    static User foundUser;
+//    public User returnUser() {
+//
+//        if (userName.getText().equals("")) {
+//            System.out.println("Username is empty");
+//            return null;
+//        } else {
+//            String enteredUsername = userName.getText();
+//            if (enteredUsername.isEmpty()) {
+//                System.out.println("Username is empty");
+//                return null;
+//            }
+//
+//            foundUser = findUser(enteredUsername, sysUsers);
+//            if (foundUser == null) {
+//                System.out.println("User not found");
+//                return null;
+//            }
+//        }
+//        return foundUser;
+//    }
 
     public static User findUserID(String nationalID, List<User> userList) {
 
@@ -188,7 +210,7 @@ public class Main extends Application implements Initializable {
 
     @FXML
     public void login(ActionEvent event) throws IOException {
-        if (userName.getText().equals("") || password.getText().equals("")) {
+        if (userName.getText().equals("") || this.password.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Empty Fields");
             alert.setHeaderText("Data Fields are empty");
