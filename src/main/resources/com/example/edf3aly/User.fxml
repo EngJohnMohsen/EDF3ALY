@@ -173,7 +173,7 @@
             <Label layoutX="61.0" layoutY="285.0" text="Item ID:" />
             <TextField fx:id="ItemID_Txt" layoutX="58.0" layoutY="308.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" opacity="0.21" pickOnBounds="true">
                <image>
@@ -185,7 +185,7 @@
                   <Font name="Times New Roman Bold Italic" size="33.0" />
                </font>
             </Label>
-            <Label layoutX="246.0" layoutY="197.0" text="0.00">
+            <Label fx:id="MainPageBalance" layoutX="246.0" layoutY="197.0" text="0.00">
                <font>
                   <Font size="24.0" />
                </font>
@@ -195,9 +195,9 @@
                   <Image url="@img_3.png" />
                </image>
             </ImageView>
-            <Label layoutX="244.0" layoutY="84.0" text="XXXXXXX" />
+            <Label fx:id="MainPageAccNo" layoutX="244.0" layoutY="84.0" text="XXXXXXX" />
          </children></AnchorPane>
-      <AnchorPane fx:id="UserDetails_Pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
+      <AnchorPane fx:id="UserDetails_Pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" opacity="0.21" pickOnBounds="true">
                <image>

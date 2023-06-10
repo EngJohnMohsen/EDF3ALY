@@ -21,8 +21,10 @@ import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
 
-    public static int currentUserIndex;
+
     public static User user;
+
+    public static int currentUserIndex;
     @FXML
     private TextField AccBalance;
 
@@ -83,6 +85,7 @@ public class Main extends Application implements Initializable {
     public String passWord;
     public Account account;
 
+
     //Premium account begins with 77 and Regular account begins with 88 and VIP account begins with 99
     public static Account myUserAcc = new Account(Account.AccountType.Credit, "1005-1234", 15000.00);
     public static Account myUserAcc2 = new Account(Account.AccountType.Savings, "1009-8684", 2000.00);
@@ -104,6 +107,8 @@ public class Main extends Application implements Initializable {
         launch();
     }
 
+
+
     public static User findUser(String username, List<User> userList) {
         if (!userList.isEmpty()) {
             for (User user : userList) {
@@ -118,28 +123,12 @@ public class Main extends Application implements Initializable {
         return null;
     }
 
-
-//    static User foundUser;
 //    public User returnUser() {
-//
-//        if (userName.getText().equals("")) {
-//            System.out.println("Username is empty");
-//            return null;
-//        } else {
-//            String enteredUsername = userName.getText();
-//            if (enteredUsername.isEmpty()) {
-//                System.out.println("Username is empty");
-//                return null;
-//            }
-//
-//            foundUser = findUser(enteredUsername, sysUsers);
-//            if (foundUser == null) {
-//                System.out.println("User not found");
-//                return null;
-//            }
-//        }
-//        return foundUser;
+//        return findUser(userName.getText(), sysUsers);
 //    }
+
+
+
 
     public static User findUserID(String nationalID, List<User> userList) {
 
@@ -218,7 +207,7 @@ public class Main extends Application implements Initializable {
         } else {
             String userNameText = userName.getText();
             String passwordText = password.getText();
-            User user = (User) findUser(userNameText, sysUsers);
+            user = (User) findUser(userNameText, sysUsers);
             try {
                 Parent root;
                 Scene scene;
@@ -323,6 +312,7 @@ public class Main extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.Account_Type.getItems().addAll(this.AccountType);
         this.Account_Type.setOnAction(this::getAccountType);
+
     }
 
     public void getAccountType(ActionEvent event) {

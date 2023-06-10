@@ -131,7 +131,14 @@ public class UserController implements Initializable {
     @FXML
     private Button membr_btn;
 
-    String[] AutomaticBill = new String[]{"Credit", "Savings", "Payments"};
+    @FXML
+    private Label MainPageAccNo;
+
+    @FXML
+    private Label MainPageBalance;
+
+
+    String[] AutomaticBill = new String[]{"Yes", "No"};
 
 
     @FXML
@@ -212,7 +219,6 @@ public class UserController implements Initializable {
         UserDetails_Pane.setVisible(false);
     }
 
-    Main main = new Main();
     public void showUserDetailsPane(){
         Transaction_pane.setVisible(false);
         Home_pane.setVisible(false);
@@ -222,10 +228,10 @@ public class UserController implements Initializable {
         History_pane.setVisible(false);
         UserDetails_Pane.setVisible(true);
 
-//        User_AccNum_Change.setText(main.returnUser().getAccount().getAccNo());
-//        User_AccType_Change.setText(main.returnUser().getAccount().getAccType());
-//        User_Name_Change.setText(main.returnUser().getName());
-//        User_SSN_Change.setText(main.returnUser().getSSN());
+        User_AccNum_Change.setText(Main.user.getAccount().getAccNo());
+        User_AccType_Change.setText(Main.user.getAccount().getAccType());
+        User_Name_Change.setText(Main.user.getName());
+        User_SSN_Change.setText(Main.user.getSSN());
     }
     
     public void returnToHome(){
@@ -346,28 +352,28 @@ public class UserController implements Initializable {
         }
         else{
             try {
-//                if(itemAmount <= main.returnUser().getAccount().getAccBalance()) {
-//                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                    alert.setTitle("Confirmation");
-//                    alert.setHeaderText("Buy Confirmation");
-//                    alert.setContentText("Are you sure you want to buy " + ItemAmount_txt.getText() + " " + StoreID_txt.getText() + "?");
-//                    if (alert.showAndWait().get() == ButtonType.OK) {
-//                        Buy_Item buy_item = new Buy_Item(transactionID, itemAmount, itemName, storeID, itemID);
-//                        buy_item.performTransaction();
-//                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-//                        alert1.setTitle("Information");
-//                        alert1.setHeaderText("Buy Successful");
-//                        alert1.setContentText("You have successfully bought " + ItemAmount_txt.getText() + " " + StoreID_txt.getText());
-//                        alert1.showAndWait();
-//                        showTransactioPane();
-//                    }
-//                } else {
-//                    Alert alert = new Alert(Alert.AlertType.ERROR);
-//                    alert.setTitle("Error");
-//                    alert.setHeaderText("Buy Error");
-//                    alert.setContentText("You do not have enough money in your account");
-//                    alert.showAndWait();
-//                }
+                if(itemAmount <= Main.user.getAccount().getAccBalance()) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText("Buy Confirmation");
+                    alert.setContentText("Are you sure you want to buy " + ItemAmount_txt.getText() + " " + StoreID_txt.getText() + "?");
+                    if (alert.showAndWait().get() == ButtonType.OK) {
+                        Buy_Item buy_item = new Buy_Item(transactionID, itemAmount, itemName, storeID, itemID);
+                        buy_item.performTransaction();
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Information");
+                        alert1.setHeaderText("Buy Successful");
+                        alert1.setContentText("You have successfully bought " + ItemAmount_txt.getText() + " " + StoreID_txt.getText());
+                        alert1.showAndWait();
+                        showTransactioPane();
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Buy Error");
+                    alert.setContentText("You do not have enough money in your account");
+                    alert.showAndWait();
+                }
             } catch (Exception exception) {
                 exception.printStackTrace();
                 exception.getCause();
@@ -380,13 +386,14 @@ public class UserController implements Initializable {
         this.AutomaticBill_Combo.getItems().addAll(this.AutomaticBill);
         this.AutomaticBill_Combo.setOnAction(this::getAutomatic);
 
-//        User_AccNum_Change.setText(main.returnUser().getAccount().getAccNo());
-//        User_AccType_Change.setText(main.returnUser().getAccount().getAccType());
-//        User_Name_Change.setText(main.returnUser().getName());
-//        User_SSN_Change.setText(main.returnUser().getSSN());
+        MainPageAccNo.setText(Main.user.getAccount().getAccNo());
+        MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
+
     }
 
     public void getAutomatic(ActionEvent event) {
         String Auto = (String)this.AutomaticBill_Combo.getValue();
     }
+
+
 }
