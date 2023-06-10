@@ -21,8 +21,10 @@ import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
 
-    public static int currentUserIndex;
+
     public static User user;
+
+    public static int currentUserIndex;
     @FXML
     private TextField AccBalance;
 
@@ -80,9 +82,9 @@ public class Main extends Application implements Initializable {
     public String name;
     public String ssn;
     public String phoneNo;
-    public String username;
     public String passWord;
     public Account account;
+
 
     //Premium account begins with 77 and Regular account begins with 88 and VIP account begins with 99
     public static Account myUserAcc = new Account(Account.AccountType.Credit, "1005-1234", 15000.00);
@@ -105,10 +107,12 @@ public class Main extends Application implements Initializable {
         launch();
     }
 
-    public static User findUser(String userName, List<User> userList) {
+
+
+    public static User findUser(String username, List<User> userList) {
         if (!userList.isEmpty()) {
             for (User user : userList) {
-                if (user.getUsername().equals(userName)) {
+                if (user.getUsername().equals(username)) {
                     System.out.println("Found");
                     return user;
                 } else {
@@ -118,6 +122,13 @@ public class Main extends Application implements Initializable {
         }
         return null;
     }
+
+//    public User returnUser() {
+//        return findUser(userName.getText(), sysUsers);
+//    }
+
+
+
 
     public static User findUserID(String nationalID, List<User> userList) {
 
@@ -185,10 +196,9 @@ public class Main extends Application implements Initializable {
         stage.show();
     }
 
-
     @FXML
     public void login(ActionEvent event) throws IOException {
-        if (userName.getText().equals("") || password.getText().equals("")) {
+        if (userName.getText().equals("") || this.password.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Empty Fields");
             alert.setHeaderText("Data Fields are empty");
@@ -197,8 +207,11 @@ public class Main extends Application implements Initializable {
         } else {
             String userNameText = userName.getText();
             String passwordText = password.getText();
-            User user = (User) findUser(userNameText, sysUsers);
+            user = (User) findUser(userNameText, sysUsers);
             try {
+                Parent root;
+                Scene scene;
+                Stage stage;
                 if (user == null || !password.getText().equals(user.getPassword())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Incorrect Login Information");
@@ -206,10 +219,10 @@ public class Main extends Application implements Initializable {
                     alert.setContentText("Pleaser Try again.");
                     alert.show();
                 } else if ((userName.getText().equals(user.getUsername()) && password.getText().equals(user.getPassword()))) {
-                    Stage stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
-                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
+                    new Stage();
+                    root = (Parent)FXMLLoader.load(this.getClass().getResource("User.fxml"));
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
                     stage.centerOnScreen();
                     stage.setScene(scene);
                     stage.show();
@@ -299,6 +312,7 @@ public class Main extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.Account_Type.getItems().addAll(this.AccountType);
         this.Account_Type.setOnAction(this::getAccountType);
+
     }
 
     public void getAccountType(ActionEvent event) {

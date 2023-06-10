@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -70,7 +71,7 @@
             </ImageView>
          </children>
         </AnchorPane>
-      <AnchorPane fx:id="Transfer_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
+      <AnchorPane fx:id="Transfer_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" layoutX="2.0" layoutY="1.0" opacity="0.21" pickOnBounds="true">
                <image>
@@ -126,21 +127,23 @@
                </image>
             </ImageView>
             <TextField fx:id="BillAmount" layoutX="58.0" layoutY="243.0" />
-            <TextField fx:id="BillName" layoutX="338.0" layoutY="243.0" />
+            <TextField fx:id="BillName" layoutX="217.0" layoutY="243.0" />
             <Label layoutX="58.0" layoutY="224.0" text="Amount:" />
-            <Label layoutX="338.0" layoutY="224.0" text="Bill Name:" />
+            <Label layoutX="217.0" layoutY="221.0" text="Bill Name:" />
             <Label layoutX="43.0" layoutY="83.0" text="Pay Bill">
                <font>
                   <Font name="Times New Roman Bold Italic" size="28.0" />
                </font>
             </Label>
-            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="249.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="149.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img_2.png" />
                </image>
             </ImageView>
             <Button fx:id="PayBill_Btn" layoutX="236.0" layoutY="314.0" mnemonicParsing="false" onAction="#Pay_Bill" stylesheets="@Buttons2.css" text="Pay" />
             <Button fx:id="PayBillToTransaction_Btn" layoutX="51.0" layoutY="454.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
+            <ComboBox fx:id="AutomaticBill_Combo" layoutX="373.0" layoutY="243.0" prefWidth="150.0" promptText="Automatically" />
+            <Label layoutX="373.0" layoutY="221.0" text="Automatic:" />
          </children></AnchorPane>
       <AnchorPane fx:id="Buy_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
@@ -155,18 +158,22 @@
                </font>
             </Label>
             <Button fx:id="BuyToTransaction_btn" layoutX="58.0" layoutY="457.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
-            <TextField fx:id="ItemAmount_txt" layoutX="338.0" layoutY="243.0" />
-            <Label layoutX="338.0" layoutY="218.0" text="Amount:" />
+            <TextField fx:id="ItemAmount_txt" layoutX="219.0" layoutY="243.0" />
+            <Label layoutX="219.0" layoutY="218.0" text="Amount:" />
             <Label layoutX="58.0" layoutY="218.0" text="Store ID:" />
             <TextField fx:id="StoreID_txt" layoutX="58.0" layoutY="243.0" />
-            <Button fx:id="BuyItem_Btn" layoutX="235.0" layoutY="312.0" mnemonicParsing="false" onAction="#BuyItem" stylesheets="@Buttons2.css" text="Buy" />
-            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="249.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="BuyItem_Btn" layoutX="235.0" layoutY="349.0" mnemonicParsing="false" onAction="#BuyItem" stylesheets="@Buttons2.css" text="Buy" />
+            <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="166.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img_2.png" />
                </image>
             </ImageView>
+            <Label layoutX="374.0" layoutY="218.0" text="Item Name:" />
+            <TextField fx:id="ItemName_Txt" layoutX="374.0" layoutY="243.0" />
+            <Label layoutX="61.0" layoutY="285.0" text="Item ID:" />
+            <TextField fx:id="ItemID_Txt" layoutX="58.0" layoutY="308.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" opacity="0.21" pickOnBounds="true">
                <image>
@@ -178,7 +185,7 @@
                   <Font name="Times New Roman Bold Italic" size="33.0" />
                </font>
             </Label>
-            <Label layoutX="246.0" layoutY="197.0" text="0.00">
+            <Label fx:id="MainPageBalance" layoutX="246.0" layoutY="197.0" text="0.00">
                <font>
                   <Font size="24.0" />
                </font>
@@ -188,7 +195,7 @@
                   <Image url="@img_3.png" />
                </image>
             </ImageView>
-            <Label layoutX="244.0" layoutY="84.0" text="XXXXXXX" />
+            <Label fx:id="MainPageAccNo" layoutX="244.0" layoutY="84.0" text="XXXXXXX" />
          </children></AnchorPane>
       <AnchorPane fx:id="UserDetails_Pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
