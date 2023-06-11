@@ -72,8 +72,9 @@ public class Account {
     public enum AccountType { //will change account type to enum
         Savings,
         Checking,
-      Credit
-}
+        Credit
+    }
+
     public void transactionHistory(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println("Transaction History:\n");
