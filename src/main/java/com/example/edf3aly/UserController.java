@@ -303,7 +303,6 @@ public class UserController implements Initializable {
                             showTransactioPane();
                             TransferAmount.clear();
                             TransferToAccount.clear();
-                            YourAccNoTransfer.clear();
                         } else {
                             Alert alert1 = new Alert(Alert.AlertType.ERROR);
                             alert1.setTitle("Error");
