@@ -266,9 +266,8 @@ public class UserController implements Initializable {
     public void Transfer(ActionEvent event) {
         String accNum = TransferToAccount.getText();
         double amount = Double.parseDouble(TransferAmount.getText());
-        String yourAccNum = YourAccNoTransfer.getText();
         UUID transactionID = UUID.randomUUID();
-        if(TransferAmount.getText().equals("") || TransferToAccount.getText().equals("") || YourAccNoTransfer.getText().equals("")){
+        if(TransferAmount.getText().equals("") || TransferToAccount.getText().equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Transfer Error");
@@ -277,19 +276,19 @@ public class UserController implements Initializable {
         }
         else{
             try {
-                if(!findUserAccount(TransferToAccount.getText(), Main.sysUsers) || !findUserAccount(YourAccNoTransfer.getText(), Main.sysUsers)){
+                if(!findUserAccount(TransferToAccount.getText(), Main.sysUsers)){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Transfer Error");
                     alert.setContentText("Account does not exist");
                     alert.showAndWait();
-                }else if(amount <= Main.findUserAccount2(yourAccNum, Main.sysUsers).getAccBalance()){
+                }else if(amount <= Main.user.getAccount().getAccBalance()){
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirmation");
                     alert.setHeaderText("Transfer Confirmation");
                     alert.setContentText("Are you sure you want to transfer " + TransferAmount.getText() + " to " + TransferToAccount.getText() + "?");
                     if (alert.showAndWait().get() == ButtonType.OK) {
-                        Transfer transfer = new Transfer(transactionID, amount, Main.findUserAccount2(accNum, Main.sysUsers), Main.findUserAccount2(yourAccNum, Main.sysUsers));
+                        Transfer transfer = new Transfer(transactionID, amount, Main.findUserAccount2(accNum, Main.sysUsers), Main.user.getAccount());
                         Transactions transactions = new Transactions(transactionID, "Transfer", amount, date);
                         if(transfer.TransferMoney()) {
                             Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Transfer");
