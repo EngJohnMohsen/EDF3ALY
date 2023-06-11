@@ -8,7 +8,7 @@ public class Account {
     private String accType;
     private String accNo;
     private double accBalance;
-    private List<Transactions> transactions;
+    public List<Transactions> transactions;
 
     public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance){
         //this.accType = accType;
@@ -55,10 +55,12 @@ public class Account {
     public void newBalance(double accBalance, double amount, String transactionType) {
         if (transactionType.equals("Buy_Item") || transactionType.equals("Pay_Bills")) {
             this.accBalance = accBalance - amount;
-        } else {
+        }
+        else if (transactionType.equals("Transfer")) ;
+        else
             System.out.println("Insufficient Transaction Type");
         }
-    }
+
     public void addTransaction(Transactions transaction) {
         transactions.add(transaction);
     }

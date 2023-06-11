@@ -3,6 +3,8 @@ package com.example.edf3aly;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 public class AccountTest {
 
     @Test
@@ -58,7 +60,10 @@ public class AccountTest {
     @Test
     public void testNewBalanceTransfer() {
         Account acc = new Account(Account.AccountType.Savings, "1001-2345", 1000.0);
-        acc.newBalance(acc.getAccBalance(), 500.0, "Transfer");
+        Account acc2 = new Account(Account.AccountType.Savings, "1002-3456", 1000.0);
+        UUID transactionID = UUID.randomUUID();
+        Transfer transfer = new Transfer(transactionID, 500.0, acc2, acc);
+        transfer.performTransaction();
         Assertions.assertEquals(500.0, acc.getAccBalance());
     }
 

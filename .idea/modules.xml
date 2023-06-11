@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Edf3aly.iml" filepath="$PROJECT_DIR$/.idea/Edf3aly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Edf3aly.iml" filepath="$PROJECT_DIR$/Edf3aly.iml" />
     </modules>
   </component>
 </project>

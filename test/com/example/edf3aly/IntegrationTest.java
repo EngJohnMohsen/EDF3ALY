@@ -2,6 +2,7 @@ package com.example.edf3aly;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -157,7 +158,6 @@ public class IntegrationTest {
         Assertions.assertEquals(initialBalance, account.getAccBalance());
         Assertions.assertFalse(account.getTransactions().contains(buyItem));
     }
-
 
 
 }
