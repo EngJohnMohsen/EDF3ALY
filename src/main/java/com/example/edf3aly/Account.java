@@ -7,7 +7,9 @@ public class Account {
     private String accType;
     private String accNo;
     private double accBalance;
-    private List<Transactions> transactions;
+
+    public List<Transactions> transactions;
+
     public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance) {
         //this.accType = accType;
         this.accNo = accNo;
@@ -39,7 +41,7 @@ public class Account {
     }
 
     public double getAccBalance() {
-        return accBalance;
+        return this.accBalance;
     }
 
     public void setAccBalance(double accBalance) {
@@ -53,7 +55,8 @@ public class Account {
     public void newBalance(double accBalance, double amount, String transactionType) {
         if (transactionType.equals("Transfer") ||
                 transactionType.equals("Buy_Item") || transactionType.equals("Pay_Bills")) {
-            this.accBalance = accBalance - amount;
+            double newAccBalance = accBalance - amount;
+            setAccBalance(newAccBalance);
         } else {
             System.out.println("Error");
         }
