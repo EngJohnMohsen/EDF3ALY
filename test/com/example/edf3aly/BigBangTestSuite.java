@@ -137,12 +137,5 @@ public class BigBangTestSuite {
         System.setOut(new PrintStream(outputStream));
         statementGenerator.generateStatement();
         String statement = outputStream.toString();
-
-        // Asserting the statement contains the expected transaction IDs
-        //Assertions.assertTrue(statement.contains(expectedTransactionID3.toString()));
-        //Assertions.assertTrue(statement.contains(expectedTransactionID4.toString()));
-       // Assertions.assertTrue(statement.contains(expectedTransactionID5.toString()));
 }
-
-
 }
