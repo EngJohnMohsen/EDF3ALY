@@ -33,6 +33,9 @@ public class UserController implements Initializable {
     private TextField BillName;
 
     @FXML
+    private TextField BillDate;
+
+    @FXML
     private Button BuyItem_Btn;
 
     @FXML
@@ -263,7 +266,7 @@ public class UserController implements Initializable {
         double amount = Double.parseDouble(TransferAmount.getText());
         String yourAccNum = YourAccNoTransfer.getText();
         UUID transactionID = UUID.randomUUID();
-        if(TransferAmount.getText().isEmpty() || TransferToAccount.getText().isEmpty() || YourAccNoTransfer.getText().isEmpty()){
+        if(TransferAmount.getText().equals("") || TransferToAccount.getText().equals("") || YourAccNoTransfer.getText().equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Transfer Error");
@@ -322,10 +325,12 @@ public class UserController implements Initializable {
     public void Pay_Bill(ActionEvent event){
         String billName = BillName.getText();
         double amount = Double.parseDouble(BillAmount.getText());
+        int day = Integer.parseInt(BillDate.getText());
         boolean automatic = AutomaticBill_Combo.getValue().equals("Yes");
         boolean notAutomatic = AutomaticBill_Combo.getValue().equals("No");
         UUID transactionID = UUID.randomUUID();
-        if(BillAmount.getText().isEmpty() || BillName.getText().isEmpty() || AutomaticBill_Combo.getValue() != null){
+        if(BillAmount.getText().isEmpty() || BillName.getText().isEmpty() || BillDate.getText().isEmpty()
+                || AutomaticBill_Combo.getValue() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Pay Bill Error");
@@ -335,21 +340,31 @@ public class UserController implements Initializable {
         else{
             try {
                 if(automatic) {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Confirmation");
-                    alert.setHeaderText("Pay Bill Confirmation");
-                    alert.setContentText("Are you sure you want to pay " + BillAmount.getText() + " to " + BillName.getText() + " automatically every month?");
-                    if (alert.showAndWait().get() == ButtonType.OK) {
-                        Pay_Bills pay_bills = new Pay_Bills(transactionID, amount, billName, true);
-                        pay_bills.performTransaction();
-                        Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Pay Bill");
-                        MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
-                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                        alert1.setTitle("Information");
-                        alert1.setHeaderText("Pay Bill Successful");
-                        alert1.setContentText("You have successfully paid " + BillAmount.getText() + " to " + BillName.getText() + " automatically every month");
-                        alert1.showAndWait();
-                        showTransactioPane();
+                    if(day == 11) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Confirmation");
+                        alert.setHeaderText("Pay Bill Confirmation");
+                        alert.setContentText("Are you sure you want to pay " + BillAmount.getText() + " to " + BillName.getText() + " automatically every month?");
+                        if (alert.showAndWait().get() == ButtonType.OK) {
+                            Pay_Bills pay_bills = new Pay_Bills(transactionID, amount, billName, true);
+                            pay_bills.setPaymentDay(day);
+                            pay_bills.setAccount(Main.user.getAccount());
+                            pay_bills.performTransaction();
+                            Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Pay_Bills");
+                            MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setTitle("Information");
+                            alert1.setHeaderText("Pay Bill Successful");
+                            alert1.setContentText("You have successfully paid " + BillAmount.getText() + " to " + BillName.getText() + " automatically every month");
+                            alert1.showAndWait();
+                            showTransactioPane();
+                        }
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Pay Bill Error");
+                        alert.setContentText("Automatic bill payment can only be done on the 11th of every month");
+                        alert.showAndWait();
                     }
                 } else if(notAutomatic){
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -358,20 +373,23 @@ public class UserController implements Initializable {
                     alert.setContentText("Are you sure you want to pay " + BillAmount.getText() + " to " + BillName.getText() + "?");
                     if (alert.showAndWait().get() == ButtonType.OK) {
                         Pay_Bills pay_bills = new Pay_Bills(transactionID, amount, billName, false);
+                        pay_bills.setAccount(Main.user.getAccount());
+                        pay_bills.setPaymentDay(day);
                         pay_bills.performTransaction();
-                        Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Pay Bill");
+                        Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Pay_Bills");
                         MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setTitle("Information");
-                        alert1.setHeaderText("Pay Bill Successful");
-                        alert1.setContentText("You have successfully paid " + BillAmount.getText() + " to " + BillName.getText());
+                        alert1.setHeaderText("Payment unsuccessful");
+                        alert1.setContentText("You cannot complete this payment at this time");
                         alert1.showAndWait();
                         showTransactioPane();
-                        BillAmount.clear();
-                        BillName.clear();
-                        AutomaticBill_Combo.setValue("Automatic");
                     }
                 }
+                BillAmount.clear();
+                BillName.clear();
+                BillDate.clear();
+                AutomaticBill_Combo.setValue("Automatic");
             } catch (Exception exception) {
                 exception.printStackTrace();
                 exception.getCause();
@@ -385,7 +403,7 @@ public class UserController implements Initializable {
         int itemAmount = Integer.parseInt(ItemAmount_txt.getText());
         int storeID = Integer.parseInt(StoreID_txt.getText());
         UUID transactionID = UUID.randomUUID();
-        if(ItemAmount_txt.getText().isEmpty() || StoreID_txt.getText().isEmpty() || ItemID_Txt.getText().isEmpty() || ItemName_Txt.getText().isEmpty()){
+        if(ItemAmount_txt.getText().equals("") || StoreID_txt.getText().equals("") || ItemID_Txt.getText().equals("") || ItemName_Txt.getText().equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Buy Error");
@@ -448,11 +466,11 @@ public class UserController implements Initializable {
         User_Name_Change.setText(Main.user.getName());
         User_SSN_Change.setText(Main.user.getSSN());
 
-        TransactionHistory_ID.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
-        TransactionHistory_type.setCellValueFactory(new PropertyValueFactory<>("type"));
-        TransactionHistory_Amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        TransactionHistory_Date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        //HistoryTree.getColumns().addAll(TransactionHistory_ID, TransactionHistory_Amount, TransactionHistory_Date,TransactionHistory_type);
+        TransactionHistory_ID.setCellValueFactory(new PropertyValueFactory<Transactions, UUID>("transactionID"));
+        TransactionHistory_type.setCellValueFactory(new PropertyValueFactory<Transactions, String>("type"));
+        TransactionHistory_Amount.setCellValueFactory(new PropertyValueFactory<Transactions, Double>("amount"));
+        TransactionHistory_Date.setCellValueFactory(new PropertyValueFactory<Transactions, Date>("date"));
+        HistoryTree.setEditable(true);
         HistoryTree.setItems(list);
 
     }

@@ -8,6 +8,7 @@ public class Account {
     private String accType;
     private String accNo;
     private double accBalance;
+
     public List<Transactions> transactions;
 
     public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance){
