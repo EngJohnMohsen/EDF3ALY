@@ -1,5 +1,6 @@
 package com.example.edf3aly;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -11,7 +12,7 @@ public class Account {
 
     public List<Transactions> transactions;
 
-    public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance){
+    public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance) {
         //this.accType = accType;
         this.accNo = accNo;
         this.accBalance = accBalance;
@@ -60,9 +61,11 @@ public class Account {
             System.out.println("Insufficient Transaction Type");
         }
     }
+
     public void addTransaction(Transactions transaction) {
         transactions.add(transaction);
     }
+
     public List<Transactions> getTransactions() {
         return transactions;
     }
@@ -70,6 +73,23 @@ public class Account {
     public enum AccountType { //will change account type to enum
         Savings,
         Checking,
-      Credit
-}
+        Credit
+    }
+
+    public void transactionHistory(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println("Transaction History:\n");
+        System.out.printf("%-15s %-15s %-15s %-15s\n", "Transaction ID", "                       Type", "           Amount", "       Date");
+        System.out.println("---------------------------------------------------------------------------------");
+        for (Transactions transaction : this.transactions)
+        {
+            System.out.printf("%-15s %-15s $%-15.2f %-15s\n",
+                    transaction.getTransactionID().toString(),
+                    transaction.getTransactionType(),
+                    transaction.getAmount(),
+                    dateFormat.format(transaction.getDate()));
+
+        }
+        System.out.println("---------------------------------------------------------------------------------");
+    }
 }

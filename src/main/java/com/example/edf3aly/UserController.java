@@ -23,6 +23,8 @@ import static com.example.edf3aly.Main.findUserAccount;
 
 public class UserController implements Initializable {
 
+    Date date = new Date();
+
     @FXML
     private ComboBox<String> AutomaticBill_Combo;
 
@@ -288,9 +290,12 @@ public class UserController implements Initializable {
                     alert.setContentText("Are you sure you want to transfer " + TransferAmount.getText() + " to " + TransferToAccount.getText() + "?");
                     if (alert.showAndWait().get() == ButtonType.OK) {
                         Transfer transfer = new Transfer(transactionID, amount, Main.findUserAccount2(accNum, Main.sysUsers), Main.findUserAccount2(yourAccNum, Main.sysUsers));
+                        Transactions transactions = new Transactions(transactionID, "Transfer", amount, date);
                         if(transfer.TransferMoney()) {
                             Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Transfer");
                             MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
+//                            Main.user.getAccount().addTransaction(transactions);
+                            Main.user.getAccount().transactionHistory();
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                             alert1.setTitle("Information");
                             alert1.setHeaderText("Transfer Successful");
@@ -350,6 +355,7 @@ public class UserController implements Initializable {
                             pay_bills.setPaymentDay(day);
                             pay_bills.setAccount(Main.user.getAccount());
                             pay_bills.performTransaction();
+                            Main.user.getAccount().transactionHistory();
                             Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Pay_Bills");
                             MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
@@ -363,7 +369,7 @@ public class UserController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Error");
                         alert.setHeaderText("Pay Bill Error");
-                        alert.setContentText("Automatic bill payment can only be done on the 11th of every month");
+                        alert.setContentText("Today is not " + day + "th of the month payment will be done automatically on " + day + "th of the month");
                         alert.showAndWait();
                     }
                 } else if(notAutomatic){
@@ -421,8 +427,9 @@ public class UserController implements Initializable {
                         Buy_Item buy_item = new Buy_Item(transactionID, itemAmount, itemName, storeID, itemID);
                         buy_item.setAccount(Main.user.getAccount());
                         buy_item.performTransaction();
-                        Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), itemAmount, "Buy Item");
+                        Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), itemAmount, "Buy_Item");
                         MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
+                        Main.user.getAccount().transactionHistory();
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setTitle("Information");
                         alert1.setHeaderText("Buy Successful");
@@ -470,6 +477,7 @@ public class UserController implements Initializable {
         TransactionHistory_type.setCellValueFactory(new PropertyValueFactory<Transactions, String>("type"));
         TransactionHistory_Amount.setCellValueFactory(new PropertyValueFactory<Transactions, Double>("amount"));
         TransactionHistory_Date.setCellValueFactory(new PropertyValueFactory<Transactions, Date>("date"));
+        HistoryTree.getColumns().addAll(TransactionHistory_ID, TransactionHistory_type, TransactionHistory_Amount, TransactionHistory_Date);
         HistoryTree.setEditable(true);
         HistoryTree.setItems(list);
 

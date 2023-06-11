@@ -119,7 +119,7 @@
             </TableView>
             <Button fx:id="HistoryToTransaction_Btn" layoutX="49.0" layoutY="453.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
          </children></AnchorPane>
-      <AnchorPane fx:id="PayBill_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
+      <AnchorPane fx:id="PayBill_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" opacity="0.21" pickOnBounds="true">
                <image>
@@ -175,7 +175,7 @@
             <Label layoutX="61.0" layoutY="285.0" text="Item ID:" />
             <TextField fx:id="ItemID_Txt" layoutX="58.0" layoutY="308.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
+      <AnchorPane fx:id="Home_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0">
          <children>
             <ImageView fitHeight="510.0" fitWidth="537.0" opacity="0.21" pickOnBounds="true">
                <image>
