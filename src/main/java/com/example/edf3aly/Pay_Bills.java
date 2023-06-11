@@ -94,7 +94,7 @@ public class Pay_Bills extends Transactions {
                 System.out.println("Insufficient funds in the account " );
             }
         } else {
-            throw new IllegalArgumentException("Payment day not reached " +
+            System.out.println("Payment day not reached " +
                     "Or Automatically payment isn't activated");
 }
 

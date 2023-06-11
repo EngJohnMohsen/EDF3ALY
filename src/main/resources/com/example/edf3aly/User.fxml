@@ -126,10 +126,10 @@
                   <Image url="@img_5.png" />
                </image>
             </ImageView>
-            <TextField fx:id="BillAmount" layoutX="58.0" layoutY="243.0" />
-            <TextField fx:id="BillName" layoutX="217.0" layoutY="243.0" />
-            <Label layoutX="58.0" layoutY="224.0" text="Amount:" />
-            <Label layoutX="217.0" layoutY="221.0" text="Bill Name:" />
+            <TextField fx:id="BillAmount" layoutX="43.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" />
+            <TextField fx:id="BillName" layoutX="149.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" />
+            <Label layoutX="43.0" layoutY="221.0" text="Amount:" />
+            <Label layoutX="149.0" layoutY="221.0" text="Bill Name:" />
             <Label layoutX="43.0" layoutY="83.0" text="Pay Bill">
                <font>
                   <Font name="Times New Roman Bold Italic" size="28.0" />
@@ -142,8 +142,10 @@
             </ImageView>
             <Button fx:id="PayBill_Btn" layoutX="236.0" layoutY="314.0" mnemonicParsing="false" onAction="#Pay_Bill" stylesheets="@Buttons2.css" text="Pay" />
             <Button fx:id="PayBillToTransaction_Btn" layoutX="51.0" layoutY="454.0" mnemonicParsing="false" onAction="#returnToTransaction" stylesheets="@Buttons2.css" text="Go Back" />
-            <ComboBox fx:id="AutomaticBill_Combo" layoutX="373.0" layoutY="243.0" prefWidth="150.0" promptText="Automatically" />
-            <Label layoutX="373.0" layoutY="221.0" text="Automatic:" />
+            <ComboBox fx:id="AutomaticBill_Combo" layoutX="248.0" layoutY="240.0" prefWidth="150.0" promptText="Automatically" />
+            <Label layoutX="248.0" layoutY="221.0" text="Automatic:" />
+            <TextField fx:id="BillDate" layoutX="409.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" />
+            <Label layoutX="409.0" layoutY="221.0" text="Day:" />
          </children></AnchorPane>
       <AnchorPane fx:id="Buy_pane" layoutX="210.0" prefHeight="510.0" prefWidth="537.0" visible="false">
          <children>
