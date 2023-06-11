@@ -313,6 +313,7 @@ public class Main extends Application implements Initializable {
         this.Account_Type.getItems().addAll(this.AccountType);
         this.Account_Type.setOnAction(this::getAccountType);
 
+
     }
 
     public void getAccountType(ActionEvent event) {
