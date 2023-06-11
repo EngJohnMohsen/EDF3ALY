@@ -2,13 +2,16 @@ package com.example.edf3aly;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Account {
     private String accType;
     private String accNo;
     private double accBalance;
     private List<Transactions> transactions;
-    public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance) {
+
+    public Transfer transfer;
+    public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance){
         //this.accType = accType;
         this.accNo = accNo;
         this.accBalance = accBalance;
@@ -51,11 +54,10 @@ public class Account {
     }
 
     public void newBalance(double accBalance, double amount, String transactionType) {
-        if (transactionType.equals("Transfer") ||
-                transactionType.equals("Buy_Item") || transactionType.equals("Pay_Bills")) {
+        if (transactionType.equals("Buy_Item") || transactionType.equals("Pay_Bills")) {
             this.accBalance = accBalance - amount;
         } else {
-            System.out.println("Error");
+            System.out.println("Insufficient Transaction Type");
         }
     }
     public void addTransaction(Transactions transaction) {

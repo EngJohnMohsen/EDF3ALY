@@ -25,6 +25,8 @@ class TransferTest {
     public void transferSuccess() {
         Account sourceAccount = new Account(Account.AccountType.Savings, "1001-1234", 600.0);
         Account targetAccount = new Account(Account.AccountType.Savings, "1001-2345", 0.0);
+        System.out.println(sourceAccount.getAccBalance());
+        System.out.println(targetAccount.getAccBalance());
 
         User user = new User("Ahmed", "12345", "0115671212", "Acc12", "123456", sourceAccount);
 
@@ -32,7 +34,9 @@ class TransferTest {
         Transfer transfer = new Transfer(transactionID, 200.0, targetAccount, sourceAccount);
         transfer.setUser(user);
 
-        assertTrue(transfer.TransferMoney());
+        transfer.performTransaction();
+        System.out.println("Source Account Balance: " + sourceAccount.getAccBalance());
+        System.out.println("Target Account Balance: " + targetAccount.getAccBalance());
         assertEquals(400.0, sourceAccount.getAccBalance());
         assertEquals(200.0, targetAccount.getAccBalance());
     }

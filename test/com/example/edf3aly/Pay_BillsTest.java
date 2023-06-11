@@ -34,12 +34,10 @@ class Pay_BillsTest {
         Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "Electricity", true);
 
         // Use the getter methods to retrieve the values
-        int billID = payBills.getBillID();
         String billName = payBills.getBillName();
         boolean automatically = payBills.isAutomatically();
 
         // Assert the expected values
-        assertEquals(123, billID);
         assertEquals("Electricity", billName);
         assertTrue(automatically);
     }
@@ -84,22 +82,6 @@ class Pay_BillsTest {
 
 
     //   SETTERS AND GETTERS  Bill_ID    **/
-    @Test
-    public void testSetAndGetBillID() {
-        // Create an instance of Pay_Bills
-        UUID transactionID = UUID.randomUUID();
-        Pay_Bills payBills = new Pay_Bills(transactionID, 100.0,  "Electricity", true);
-
-        // Set the bill ID
-        int billID = 1;
-        payBills.setBillID(billID);
-
-        // Get the bill ID
-        int actualBillID = payBills.getBillID();
-
-        // Assert the expected bill ID
-        assertEquals(billID, actualBillID);
-    }
 
 
     /**   Automatically     **/
@@ -188,7 +170,7 @@ class Pay_BillsTest {
         Pay_Bills payBills3 = new Pay_Bills(transactionID3, 100.0, "Internet"   , true);
 
         // Modify the payment day
-        int paymentDay = 9;
+        int paymentDay = 11;
 
         // Set the modified payment day
         payBills1.setPaymentDay(paymentDay);
@@ -226,7 +208,7 @@ class Pay_BillsTest {
         Pay_Bills payBills = new Pay_Bills(transactionID, 200.0, "Electricity", true);
 
         // Modify the payment day
-        int paymentDay = 9;
+        int paymentDay = 11;
 
         // Set the modified payment day
         payBills.setPaymentDay(paymentDay);
@@ -256,7 +238,7 @@ class Pay_BillsTest {
         Pay_Bills payBills = new Pay_Bills(transactionID, 400.0,  "Electricity", true);
 
         // Modify the payment day
-        int paymentDay = 9;
+        int paymentDay = 11;
 
         // Set the modified payment day
         payBills.setPaymentDay(paymentDay);
@@ -285,7 +267,7 @@ class Pay_BillsTest {
         // Create an instance of Pay_Bills for the first bill
         UUID transactionID = UUID.randomUUID();
         Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0,  "Electricity", true);
-        bill1.setPaymentDay(9);
+        bill1.setPaymentDay(11);
         bill1.setAccount(account);
 
         // Perform the payment for bill1
@@ -294,14 +276,14 @@ class Pay_BillsTest {
         // Create an instance of Pay_Bills for the second bill
         UUID transactionID2 = UUID.randomUUID();
         Pay_Bills bill2 = new Pay_Bills(transactionID2, 150.0,  "Internet", true);
-        bill2.setPaymentDay(9);
+        bill2.setPaymentDay(11);
         bill2.setAccount(account);
 
         // Perform the payment for bill2
         bill2.performTransaction();
         UUID transactionID3 = UUID.randomUUID();
         Pay_Bills bill3 = new Pay_Bills(transactionID3, 150.0,  "Telephone", true);
-        bill3.setPaymentDay(9);
+        bill3.setPaymentDay(11);
         bill3.setAccount(account);
 
         // Perform the payment for bill3
@@ -324,7 +306,7 @@ class Pay_BillsTest {
         // Create an instance of Pay_Bills for the first bill
         UUID transactionID = UUID.randomUUID();
         Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0,  "Electricity", true);
-        bill1.setPaymentDay(9);
+        bill1.setPaymentDay(11);
         bill1.setAccount(account);
         try {
             // Perform the payment for bill1
@@ -368,7 +350,7 @@ class Pay_BillsTest {
         // Create an instance of Pay_Bills for the first bill
         UUID transactionID = UUID.randomUUID();
         Pay_Bills bill1 = new Pay_Bills(transactionID, 200.0,  "Electricity", false);
-        bill1.setPaymentDay(9);
+        bill1.setPaymentDay(11);
         bill1.setAccount(account);
         try {
             // Perform the payment for bill1

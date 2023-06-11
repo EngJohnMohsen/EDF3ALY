@@ -1,5 +1,6 @@
 package com.example.edf3aly;
 
+import java.nio.channels.Pipe;
 import java.util.Date;
 import java.util.UUID;
 
@@ -69,15 +70,18 @@ public class Transfer extends Transactions {
             throw new IllegalArgumentException("Source and target accounts cannot be the same");
         }
 
+
         // Subtract the amount from the source account's balance
         double newSourceBalance = sourceAccount.getAccBalance() - amount;
-        sourceAccount.setAccBalance(newSourceBalance);
+         sourceAccount.setAccBalance(newSourceBalance);
         sourceAccount.addTransaction(this);
+
 
         // Add the amount to the target account's balance
         double newTargetBalance = targetAccount.getAccBalance() + amount;
         targetAccount.setAccBalance(newTargetBalance);
         targetAccount.addTransaction(this);
+
 
         return true ;
     }
@@ -97,4 +101,11 @@ public class Transfer extends Transactions {
         this.user = user;
     }
 
+    public boolean sourceAccount() {
+            return true;
+    }
+
+    public boolean targetAccount() {
+        return true;
+    }
 }
