@@ -1,7 +1,7 @@
 package com.example.edf3aly;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -9,17 +9,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
-class Statement_GeneratorTest {
+public class Statement_GeneratorTest {
 
     private Statement_Generator statementGenerator;
     private ByteArrayOutputStream outputStream;
     private PrintStream originalOut;
     private SimpleDateFormat dateFormat;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         statementGenerator = new Statement_Generator();
         outputStream = new ByteArrayOutputStream();
@@ -94,5 +94,4 @@ class Statement_GeneratorTest {
                 "----------------------------------------------------\n";
         assertNotEquals(expectedOutput, output);
     }
-
 }

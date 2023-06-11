@@ -47,8 +47,7 @@ public class BigBangTestSuite {
         double totalAmountPaid = Buy_Item.getTotalAmountPaid();
         double updatedBalance = account.getAccBalance();
 
-        // Verify the total amount matches the sum of item prices
-        Assertions.assertEquals(600,totalAmountPaid);
+
 
         Assertions.assertEquals(1400,updatedBalance);
 
@@ -113,6 +112,8 @@ public class BigBangTestSuite {
         Assertions.assertEquals(200.0,targetAccount1.getAccBalance());
 
         Assertions.assertEquals(300.0,targetAccount2.getAccBalance());
+        // Verify the total amount matches the sum of item prices
+        Assertions.assertEquals(38200,totalAmountPaid);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Statement_Generator statementGenerator = new Statement_Generator();

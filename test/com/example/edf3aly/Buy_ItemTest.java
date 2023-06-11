@@ -1,26 +1,22 @@
 package com.example.edf3aly;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.UUID;
 
-class Buy_ItemTest {
+public class Buy_ItemTest {
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         System.out.println("Starting Test Case...");
     }
 
-    @AfterEach
-    void tearDown() {
+    @After
+    public void tearDown() {
         System.out.println("Test Case Ended...\n------------------");
-
     }
 
     @Test
@@ -80,7 +76,12 @@ class Buy_ItemTest {
 
         // Perform the transaction without setting the account
 
-        assertThrows(IllegalStateException.class, buyItem::performTransaction);
+        try {
+            buyItem.performTransaction();
+            fail("Expected IllegalStateException was not thrown.");
+        } catch (IllegalStateException e) {
+            // Exception expected, so test is successful
+        }
     }
 
     @Test
@@ -98,7 +99,7 @@ class Buy_ItemTest {
 
         // Verify the account balance is updated correctly
         double updatedBalance = account.getAccBalance();
-        assertEquals(800, updatedBalance);
+        assertEquals(800, updatedBalance, 0.0);
     }
 
     @Test
@@ -133,7 +134,7 @@ class Buy_ItemTest {
 
         // Verify the retrieved item price matches the set value
         double itemPrice = buyItem.getItemPrice();
-        assertEquals(200, itemPrice);
+        assertEquals(200, itemPrice, 0.0);
     }
 
     @Test
@@ -157,8 +158,8 @@ class Buy_ItemTest {
         double totalAmount = Buy_Item.getTotalAmountPaid();
         double updatedBalance = account.getAccBalance();
         // Verify the total amount matches the sum of item prices
-        assertEquals(37600, totalAmount);
-        assertEquals(12400, updatedBalance);
+        assertEquals(37600, totalAmount, 0.0);
+        assertEquals(12400, updatedBalance, 0.0);
     }
 
     @Test
@@ -186,8 +187,8 @@ class Buy_ItemTest {
         double updatedBalance = account.getAccBalance();
 
         // Verify the total amount matches the sum of item prices
-        assertEquals(600, totalAmountPaid);
-        assertEquals(1400, updatedBalance);
+        assertEquals(600, totalAmountPaid, 0.0);
+        assertEquals(1400, updatedBalance, 0.0);
     }
 
 }

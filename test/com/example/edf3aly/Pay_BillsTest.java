@@ -1,26 +1,24 @@
 package com.example.edf3aly;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Date;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class Pay_BillsTest {
+public class Pay_BillsTest {
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         System.out.println("Starting Test Case...");
     }
 
-    @AfterEach
-    void tearDown() {
+    @After
+    public void tearDown() {
         System.out.println("Test Case Ended...\n------------------");
-
     }
 
 
