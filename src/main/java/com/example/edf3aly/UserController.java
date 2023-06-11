@@ -287,6 +287,7 @@ public class UserController implements Initializable {
                         Transfer transfer = new Transfer(transactionID, amount, Main.findUserAccount2(accNum, Main.sysUsers), Main.findUserAccount2(yourAccNum, Main.sysUsers));
                         if(transfer.TransferMoney()) {
                             Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Transfer");
+                            MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                             alert1.setTitle("Information");
                             alert1.setHeaderText("Transfer Successful");
@@ -341,7 +342,8 @@ public class UserController implements Initializable {
                     if (alert.showAndWait().get() == ButtonType.OK) {
                         Pay_Bills pay_bills = new Pay_Bills(transactionID, amount, billName, true);
                         pay_bills.performTransaction();
-                        Main.user.getAccount().setAccBalance(Main.user.getAccount().getAccBalance() - amount);
+                        Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Pay Bill");
+                        MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setTitle("Information");
                         alert1.setHeaderText("Pay Bill Successful");
@@ -357,6 +359,8 @@ public class UserController implements Initializable {
                     if (alert.showAndWait().get() == ButtonType.OK) {
                         Pay_Bills pay_bills = new Pay_Bills(transactionID, amount, billName, false);
                         pay_bills.performTransaction();
+                        Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), amount, "Pay Bill");
+                        MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setTitle("Information");
                         alert1.setHeaderText("Pay Bill Successful");
@@ -400,6 +404,7 @@ public class UserController implements Initializable {
                         buy_item.setAccount(Main.user.getAccount());
                         buy_item.performTransaction();
                         Main.user.getAccount().newBalance(Main.user.getAccount().getAccBalance(), itemAmount, "Buy Item");
+                        MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setTitle("Information");
                         alert1.setHeaderText("Buy Successful");
@@ -435,6 +440,8 @@ public class UserController implements Initializable {
 
         MainPageAccNo.setText(Main.user.getAccount().getAccNo());
         MainPageBalance.setText(String.valueOf(Main.user.getAccount().getAccBalance()));
+
+
 
         User_AccNum_Change.setText(Main.user.getAccount().getAccNo());
         User_AccType_Change.setText(Main.user.getAccount().getAccType());

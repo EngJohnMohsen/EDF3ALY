@@ -8,7 +8,7 @@ public class Account {
     private String accType;
     private String accNo;
     private double accBalance;
-    private List<Transactions> transactions;
+    public List<Transactions> transactions;
 
     public Account(/*String accType,*/AccountType accountType, String accNo, double accBalance){
         //this.accType = accType;
